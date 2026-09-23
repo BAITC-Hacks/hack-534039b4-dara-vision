@@ -7,7 +7,7 @@ keeps pilot and final contacts within the same resource limits. The included
 
 ## Setup and run
 
-Python 3.11+ is required. From this repository directory:
+Python 3.12+ is required by the pinned NumPy version. From this repository directory:
 
 ```bash
 python -m venv .venv
@@ -23,8 +23,10 @@ Evaluation and submission generation run offline after installation. The
 agent resolves optional migration history relative to its own source file;
 it falls back to profile and tariff data if that history is unavailable.
 `scripts/evaluate.py` compares the agent with the unmodified official template
-on paired seeds and writes Markdown and JSON reports. For a single verbose
-official score, run `python local_eval.py`.
+on paired seeds and writes Markdown and JSON reports. It exits nonzero after
+saving reports if the agent scores `FAIL`, a violation is detected, or an
+evaluation fails. Git metadata is recorded as `unknown` when unavailable.
+For a single verbose official score, run `python local_eval.py`.
 
 ## Five-minute demo
 

@@ -68,9 +68,14 @@ def main():
         p.error("invalid seed range")
     import os
     os.chdir(ROOT)  # The unmodified official evaluator resolves data relative to cwd.
-    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        commit = "unknown"
     rows = []
     trace = None
+    failed = False
     for seed in range(args.start, args.stop):
         agent = Agent()
         result, campaigns, stdout = run_one(agent, seed)
@@ -78,6 +83,7 @@ def main():
         errors = violations(result, campaigns, stdout)
         if baseline is None:
             errors.append("baseline evaluation failed")
+        failed = failed or bool(errors) or (result is not None and result.get("status") == "FAIL")
         row = {"seed": seed, "agent_net": result["net_arpu_gain"] if result else None,
                "template_net": baseline["net_arpu_gain"] if baseline else None,
                "cost": result["total_cost"] if result else None,
@@ -100,7 +106,8 @@ def main():
     prefix.with_suffix(".json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     prefix.with_suffix(".md").write_text(render_report(report))
     prefix.with_name(prefix.name + "-trace.json").write_text(json.dumps(trace, indent=2, ensure_ascii=False) + "\n")
+    return int(failed)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

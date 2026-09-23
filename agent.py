@@ -4,7 +4,7 @@ import math
 
 from contracts import PilotObservation
 from planning import build_cells, can_pilot, campaign_score, select_campaigns, snapshot, validate_plan
-from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate
+from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate, pilot_sample_size
 
 
 class Agent:
@@ -50,8 +50,7 @@ class Agent:
                 break
 
             def pilot_size(candidate):
-                return min(200 if candidate.cost_per_contact <= 22 else 50,
-                           candidate.cell.audience_count)
+                return pilot_sample_size(candidate, observations)
 
             def eligible(candidate):
                 n_requested = pilot_size(candidate)

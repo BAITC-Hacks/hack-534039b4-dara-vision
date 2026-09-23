@@ -1,0 +1,132 @@
+{
+  "mock_only": true,
+  "rows": [
+    {
+      "seed": 0,
+      "net": 14288.030125399877,
+      "baseline_net": -1019431.0606441048,
+      "paired_difference": 1033719.0907695047,
+      "cost": 31704.0,
+      "contacts": 7126,
+      "status": "PASS",
+      "final_campaigns": 1,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 1,
+      "net": -87370.0767958549,
+      "baseline_net": -576203.7790105487,
+      "paired_difference": 488833.7022146938,
+      "cost": 23800.0,
+      "contacts": 12184,
+      "status": "FAIL",
+      "final_campaigns": 3,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 2,
+      "net": -9555.672096534692,
+      "baseline_net": -338970.97459386534,
+      "paired_difference": 329415.30249733065,
+      "cost": 20432.0,
+      "contacts": 13817,
+      "status": "FAIL",
+      "final_campaigns": 4,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 3,
+      "net": 30464.503713159793,
+      "baseline_net": -140280.93497766246,
+      "paired_difference": 170745.43869082225,
+      "cost": 39704.0,
+      "contacts": 7126,
+      "status": "PASS",
+      "final_campaigns": 1,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 4,
+      "net": -32080.6238989966,
+      "baseline_net": -1019236.6714434463,
+      "paired_difference": 987156.0475444497,
+      "cost": 42268.0,
+      "contacts": 13817,
+      "status": "FAIL",
+      "final_campaigns": 4,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 5,
+      "net": -259386.22765625318,
+      "baseline_net": -366963.8866435362,
+      "paired_difference": 107577.65898728304,
+      "cost": 80932.0,
+      "contacts": 12184,
+      "status": "FAIL",
+      "final_campaigns": 3,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 6,
+      "net": 71291.03448412623,
+      "baseline_net": -320311.84019152867,
+      "paired_difference": 391602.8746756549,
+      "cost": 15600.0,
+      "contacts": 12587,
+      "status": "PASS",
+      "final_campaigns": 4,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 7,
+      "net": -160795.06118138597,
+      "baseline_net": -348931.70612175035,
+      "paired_difference": 188136.64494036438,
+      "cost": 24600.0,
+      "contacts": 5350,
+      "status": "FAIL",
+      "final_campaigns": 1,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 8,
+      "net": -23354.122151949705,
+      "baseline_net": -76493.45195450934,
+      "paired_difference": 53139.32980255963,
+      "cost": 52326.0,
+      "contacts": 9091,
+      "status": "FAIL",
+      "final_campaigns": 3,
+      "pilots": 12,
+      "capped_campaigns": 0
+    },
+    {
+      "seed": 9,
+      "net": -27458.705543514363,
+      "baseline_net": -601537.532706727,
+      "paired_difference": 574078.8271632127,
+      "cost": 13680.0,
+      "contacts": 13904,
+      "status": "FAIL",
+      "final_campaigns": 4,
+      "pilots": 12,
+      "capped_campaigns": 0
+    }
+  ],
+  "summary": {
+    "median_net": -25406.413847732034,
+    "median_paired_difference": 360509.0885864928,
+    "minimum_net": -259386.22765625318,
+    "negative_fraction": 0.7,
+    "capped_campaigns": 0
+  }
+}

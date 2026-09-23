@@ -3,8 +3,8 @@
 import math
 
 from contracts import PilotObservation
-from planning import build_cells, can_pilot, campaign_score, select_campaigns, snapshot, validate_plan
-from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate
+from planning import build_cells, can_pilot, campaign_score, incremental_scores, select_campaigns, snapshot, validate_plan
+from policy import conservative_ratios, adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate, pilot_sample_size
 
 
 class Agent:
@@ -50,8 +50,7 @@ class Agent:
                 break
 
             def pilot_size(candidate):
-                return min(200 if candidate.cost_per_contact <= 22 else 50,
-                           candidate.cell.audience_count)
+                return pilot_sample_size(candidate, observations)
 
             def eligible(candidate):
                 n_requested = pilot_size(candidate)
@@ -111,19 +110,20 @@ class Agent:
             self._event("failed", reason="no successful pilot")
             raise RuntimeError("no successful pilot")
         resources = snapshot(env)
-        ratios = adjusted_ratios(observations)
-        selected = select_campaigns(list(tested.values()), ratios, resources)
+        ratios = conservative_ratios(observations)
+        selected = select_campaigns(list(tested.values()), ratios, resources, observations)
         if not selected:
             self._event("failed", reason="no feasible tested campaign")
             raise RuntimeError("no feasible tested campaign")
         validate_plan(selected, profile, tariffs, channels, resources)
-        if all(campaign_score(c, ratios[c.key]) <= 0 for c in selected):
+        marginal_scores = incremental_scores(list(tested.values()), ratios, observations)
+        if all(marginal_scores[c.key] <= 0 for c in selected):
             self._event("emergency", reason="no estimated profitable campaign")
         campaigns = []
         for index, candidate in enumerate(selected, 1):
             campaigns.append({"campaign_name": f"campaign_{index:02d}", **candidate.cell.filters,
                               "target_tariff": candidate.target_tariff, "channel": candidate.channel})
             self._event("final_selected", candidate_key=candidate.key,
-                        estimated_score=campaign_score(candidate, ratios[candidate.key]),
+                        estimated_score=marginal_scores[candidate.key],
                         audience_count=candidate.cell.audience_count)
         return campaigns

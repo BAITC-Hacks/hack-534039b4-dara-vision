@@ -88,25 +88,72 @@ def campaign_score(candidate, ratio):
     return ratio * candidate.cell.arpu_sum - candidate.cell.audience_count * candidate.cost_per_contact
 
 
-def select_campaigns(candidates, estimated_ratios, resources):
-    ranked = [(campaign_score(c, estimated_ratios[c.key]), c) for c in candidates if c.key in estimated_ratios]
+def incremental_scores(candidates, estimated_ratios, observations=()):
+    """Expected additional gain after uniform pilot samples, with deduplication.
+
+    IDs are intentionally unavailable to the agent. Independence of successive
+    uniform samples gives expected coverage; a full-cell pilot is exact.
+    Negative final campaigns retain the conservative whole-cell loss estimate.
+    """
+    indexed = {c.key: c for c in candidates}
+    pilots_by_cell = {}
+    for observation in observations:
+        c = indexed.get(observation.candidate_key)
+        if c is not None:
+            pilots_by_cell.setdefault(c.cell.key, []).append(
+                (estimated_ratios[c.key], observation.n_actual / c.cell.audience_count))
+    scores = {}
+    for c in candidates:
+        if c.key not in estimated_ratios:
+            continue
+        ratio = estimated_ratios[c.key]
+        if ratio <= 0:
+            scores[c.key] = campaign_score(c, ratio)
+            continue
+        # E[min(final_ratio, max(0, pilot ratios covering a customer))].
+        covered_lift, uncovered = 0., 1.
+        for lift, fraction in sorted(pilots_by_cell.get(c.cell.key, []), reverse=True):
+            covered_lift += uncovered * fraction * min(ratio, max(0., lift))
+            uncovered *= 1 - fraction
+        scores[c.key] = (ratio - covered_lift) * c.cell.arpu_sum - c.cell.audience_count * c.cost_per_contact
+    return scores
+
+
+def select_campaigns(candidates, estimated_ratios, resources, observations=()):
+    scores = incremental_scores(candidates, estimated_ratios, observations)
+    ranked = [(scores[c.key], c) for c in candidates if c.key in scores]
     positives = sorted((item for item in ranked if item[0] > 0), key=lambda item: (-item[0], item[1].key))
-    selected, used_cells = [], set()
-    budget, contacts = resources.remaining_budget, resources.remaining_contacts
+    # At most twenty measured arms: exact grouped branch-and-bound avoids
+    # spending scarce contacts on one large cell when several smaller cells
+    # have greater total value. Each group permits at most one final campaign.
+    groups = {}
     for score, candidate in positives:
-        if len(selected) >= 10:
-            break
-        if candidate.cell.key in used_cells or candidate.cell.audience_count > contacts:
-            continue
-        cost = candidate.cell.audience_count * candidate.cost_per_contact
-        if cost > budget + 1e-7:
-            continue
-        selected.append(candidate)
-        used_cells.add(candidate.cell.key)
-        budget -= cost
-        contacts -= candidate.cell.audience_count
+        groups.setdefault(candidate.cell.key, []).append((score, candidate))
+    groups = list(groups.values())
+    suffix_bound = [0.] * (len(groups) + 1)
+    for index in range(len(groups) - 1, -1, -1):
+        suffix_bound[index] = suffix_bound[index + 1] + groups[index][0][0]
+    best_score, selected = 0., []
+
+    def search(index, budget, contacts, value, chosen):
+        nonlocal best_score, selected
+        if value > best_score + 1e-7:
+            best_score, selected = value, list(chosen)
+        if (index == len(groups) or len(chosen) == 10
+                or value + suffix_bound[index] <= best_score + 1e-7):
+            return
+        for score, candidate in groups[index]:
+            count = candidate.cell.audience_count
+            cost = count * candidate.cost_per_contact
+            if count <= contacts and cost <= budget + 1e-7:
+                chosen.append(candidate)
+                search(index + 1, budget - cost, contacts - count, value + score, chosen)
+                chosen.pop()
+        search(index + 1, budget, contacts, value, chosen)
+
+    search(0, resources.remaining_budget, resources.remaining_contacts, 0., [])
     if selected:
-        return selected
+        return sorted(selected, key=lambda c: (-scores[c.key], c.key))
     feasible = [(score, c) for score, c in ranked if c.cell.audience_count <= resources.remaining_contacts
                 and c.cell.audience_count * c.cost_per_contact <= resources.remaining_budget + 1e-7]
     return [min(feasible, key=lambda item: (-item[0], item[1].cell.audience_count, item[1].key))[1]] if feasible else []

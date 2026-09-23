@@ -91,3 +91,72 @@ def test_oversized_cell_splits_by_call_with_exact_disjoint_filters():
 
 def test_unsplittable_oversized_cell_is_excluded():
     assert build_cells(profile(5001)) == []
+
+
+def test_final_gain_excludes_full_cell_pilot_coverage():
+    from contracts import PilotObservation
+    from planning import incremental_scores
+    cell = Cell('cell', {}, 100, 100000)
+    paid = Candidate('paid', cell, 'b', 'sms', 4, 0)
+    observations = [PilotObservation('paid', 100, 400, .2)]
+    assert incremental_scores([paid], {'paid': .2}, observations)['paid'] == -400
+
+
+def test_partial_pilot_overlap_is_expected_not_added_twice():
+    from contracts import PilotObservation
+    from planning import incremental_scores
+    cell = Cell('cell', {}, 100, 100000)
+    candidate = Candidate('free', cell, 'b', 'push', 0, 0)
+    observations = [PilotObservation('free', 50, 0, .2)] * 2
+    # Independent half-cell pilots cover 75% in expectation; 25% remains.
+    assert incremental_scores([candidate], {'free': .2}, observations)['free'] == pytest.approx(5000)
+
+
+def test_pilot_with_stronger_channel_reduces_weaker_final_gain():
+    from contracts import PilotObservation
+    from planning import incremental_scores
+    cell = Cell('cell', {}, 100, 100000)
+    paid = Candidate('paid', cell, 'b', 'sms', 4, 0)
+    free = Candidate('free', cell, 'b', 'push', 0, 0)
+    scores = incremental_scores([paid, free], {'paid': .3, 'free': .2}, [PilotObservation('paid', 50, 200, .3)])
+    assert scores['free'] == pytest.approx(10000)
+    assert scores['paid'] == pytest.approx(14600)
+
+
+def test_portfolio_avoids_greedy_contact_trap():
+    large = Candidate('large', Cell('a', {}, 100, 1100), 'x', 'push', 0, 0)
+    small1 = Candidate('small1', Cell('b', {}, 50, 700), 'x', 'push', 0, 0)
+    small2 = Candidate('small2', Cell('c', {}, 50, 700), 'x', 'push', 0, 0)
+    selected = select_campaigns([large, small1, small2], {c.key: 1 for c in [large, small1, small2]}, ResourceSnapshot(0, 100, 0))
+    assert {c.key for c in selected} == {'small1', 'small2'}
+
+
+def test_portfolio_matches_exhaustive_feasible_subsets():
+    import itertools
+    import random
+    from planning import incremental_scores
+    for seed in range(10):
+        rng = random.Random(seed)
+        candidates = [Candidate(str(i), Cell(str(i//2), {}, 10 + (i//2)*10, rng.uniform(100, 1000)),
+                                str(i), 'sms', 4, 0) for i in range(8)]
+        ratios = {c.key: rng.uniform(-.1, .9) for c in candidates}
+        resources = ResourceSnapshot(350, 80, 0)
+        scores = incremental_scores(candidates, ratios)
+        feasible_values = []
+        for n in range(1, len(candidates)+1):
+            for subset in itertools.combinations(candidates, n):
+                if (len({c.cell.key for c in subset}) == n
+                        and sum(c.cell.audience_count for c in subset) <= resources.remaining_contacts
+                        and sum(c.cell.audience_count*c.cost_per_contact for c in subset) <= resources.remaining_budget):
+                    feasible_values.append(sum(scores[c.key] for c in subset))
+        chosen = select_campaigns(candidates, ratios, resources)
+        assert sum(scores[c.key] for c in chosen) == pytest.approx(max(feasible_values))
+
+
+def test_exact_portfolio_obeys_money_and_ten_campaign_limit():
+    candidates = [Candidate(str(i), Cell(str(i), {}, 10, 1000+i), 'x', 'sms', 4, 0) for i in range(20)]
+    ratios = {c.key: 1. for c in candidates}
+    for budget, count in [(100000, 10), (120, 3)]:
+        selected = select_campaigns(candidates, ratios, ResourceSnapshot(budget, 15000, 0))
+        assert len(selected) == count
+        assert {c.key for c in selected} == {str(i) for i in range(20-count, 20)}

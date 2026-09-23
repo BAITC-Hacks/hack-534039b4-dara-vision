@@ -1,0 +1,901 @@
+{
+  "baseline": "b70e366",
+  "source_sha256": {
+    "agent.py": "dbd551b3cb3beb16213c3f5a492731bb77955f647978165ff35aeeffc64a5c51",
+    "policy.py": "8ba8e350863f6360837f0a0d6e83c94fa6193d9c395069c7a73e569da75eac8e",
+    "planning.py": "3840278e3a9409df3fd2b21044928913b0e8db8302186fde75c0791a3a886315",
+    "scripts/compare_candidate.py": "d7331d65f51f996842a8b4d4312ca66466912dd1183ac4f07de96710d8aaffbf"
+  },
+  "summary": {
+    "mock": {
+      "runs": 5,
+      "wins": 0,
+      "losses": 5,
+      "mean_delta": -2667371.6451461967,
+      "baseline": {
+        "mean": 3385166.8674635836,
+        "median": 3424106.0232850607,
+        "min": 3089263.99192727,
+        "negative": 0
+      },
+      "candidate": {
+        "mean": 717795.2223173869,
+        "median": 767318.3352553904,
+        "min": 498123.09170654323,
+        "negative": 0
+      }
+    },
+    "positive": {
+      "runs": 5,
+      "wins": 0,
+      "losses": 5,
+      "mean_delta": -1413345.6393033732,
+      "baseline": {
+        "mean": 3854087.3505043862,
+        "median": 3812208.624628717,
+        "min": 3219012.5476306435,
+        "negative": 0
+      },
+      "candidate": {
+        "mean": 2440741.711201013,
+        "median": 2385634.655522638,
+        "min": 2360920.7653401513,
+        "negative": 0
+      }
+    },
+    "negative": {
+      "runs": 5,
+      "wins": 5,
+      "losses": 0,
+      "mean_delta": 288804.6256157947,
+      "baseline": {
+        "mean": -883984.3465382897,
+        "median": -823779.6248585967,
+        "min": -1210332.884422618,
+        "negative": 5
+      },
+      "candidate": {
+        "mean": -595179.720922495,
+        "median": -571301.4721858602,
+        "min": -670373.8572220186,
+        "negative": 5
+      }
+    },
+    "null": {
+      "runs": 5,
+      "wins": 4,
+      "losses": 1,
+      "mean_delta": 12308.4,
+      "baseline": {
+        "mean": -59485.6,
+        "median": -63320.0,
+        "min": -83186.0,
+        "negative": 5
+      },
+      "candidate": {
+        "mean": -47177.2,
+        "median": -25040.0,
+        "min": -98054.0,
+        "negative": 5
+      }
+    },
+    "mixed": {
+      "runs": 5,
+      "wins": 5,
+      "losses": 0,
+      "mean_delta": 1042282.6697349462,
+      "baseline": {
+        "mean": 2435942.5848602126,
+        "median": 2727628.504007915,
+        "min": 1478051.3988176347,
+        "negative": 0
+      },
+      "candidate": {
+        "mean": 3478225.254595159,
+        "median": 3953023.404154161,
+        "min": 1479080.970679575,
+        "negative": 0
+      }
+    },
+    "sparse": {
+      "runs": 5,
+      "wins": 4,
+      "losses": 1,
+      "mean_delta": 712921.7682448493,
+      "baseline": {
+        "mean": 1932384.9403378821,
+        "median": 2045497.6490026172,
+        "min": 959513.7399228396,
+        "negative": 0
+      },
+      "candidate": {
+        "mean": 2645306.7085827314,
+        "median": 2327224.563737845,
+        "min": 2302830.6863252176,
+        "negative": 0
+      }
+    }
+  },
+  "rows": [
+    {
+      "scenario": "mock",
+      "model_seed": 0,
+      "seed": 0,
+      "baseline": {
+        "net": 3441687.308697588,
+        "cost": 90318.0,
+        "contacts": 10175,
+        "unique": 7885,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 10,
+        "seconds": 0.16568204600116587
+      },
+      "candidate": {
+        "net": 504850.4717695891,
+        "cost": 43944.0,
+        "contacts": 9145,
+        "unique": 7356,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 7,
+        "seconds": 0.158866231000502
+      },
+      "difference": -2936836.836927999
+    },
+    {
+      "scenario": "mock",
+      "model_seed": 0,
+      "seed": 1,
+      "baseline": {
+        "net": 3424106.0232850607,
+        "cost": 83346.0,
+        "contacts": 11311,
+        "unique": 8578,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 10,
+        "seconds": 0.1618958829985786
+      },
+      "candidate": {
+        "net": 873854.7893887239,
+        "cost": 98160.0,
+        "contacts": 9921,
+        "unique": 7851,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 8,
+        "seconds": 0.16773999899851333
+      },
+      "difference": -2550251.2338963365
+    },
+    {
+      "scenario": "mock",
+      "model_seed": 0,
+      "seed": 2,
+      "baseline": {
+        "net": 3555753.582538977,
+        "cost": 83466.0,
+        "contacts": 14840,
+        "unique": 12410,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.17317398799968942
+      },
+      "candidate": {
+        "net": 498123.09170654323,
+        "cost": 43944.0,
+        "contacts": 9347,
+        "unique": 7558,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 8,
+        "seconds": 0.15660582700002124
+      },
+      "difference": -3057630.4908324336
+    },
+    {
+      "scenario": "mock",
+      "model_seed": 0,
+      "seed": 3,
+      "baseline": {
+        "net": 3415023.4308690224,
+        "cost": 83466.0,
+        "contacts": 10752,
+        "unique": 8316,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 10,
+        "seconds": 0.160490258000209
+      },
+      "candidate": {
+        "net": 767318.3352553904,
+        "cost": 98160.0,
+        "contacts": 4740,
+        "unique": 3564,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 8,
+        "seconds": 0.15861838500131853
+      },
+      "difference": -2647705.095613632
+    },
+    {
+      "scenario": "mock",
+      "model_seed": 0,
+      "seed": 4,
+      "baseline": {
+        "net": 3089263.99192727,
+        "cost": 83118.0,
+        "contacts": 12746,
+        "unique": 10266,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.15246879899859778
+      },
+      "candidate": {
+        "net": 944829.4234666877,
+        "cost": 98104.0,
+        "contacts": 9588,
+        "unique": 7681,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 7,
+        "seconds": 0.16266785399966466
+      },
+      "difference": -2144434.5684605823
+    },
+    {
+      "scenario": "positive",
+      "model_seed": 0,
+      "seed": 0,
+      "baseline": {
+        "net": 4208039.0842164345,
+        "cost": 81130.0,
+        "contacts": 14946,
+        "unique": 12216,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.142849711000963
+      },
+      "candidate": {
+        "net": 2408496.6805241327,
+        "cost": 99840.0,
+        "contacts": 9896,
+        "unique": 7675,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.14736207500027376
+      },
+      "difference": -1799542.4036923018
+    },
+    {
+      "scenario": "positive",
+      "model_seed": 0,
+      "seed": 1,
+      "baseline": {
+        "net": 4274939.32315272,
+        "cost": 90434.0,
+        "contacts": 14994,
+        "unique": 12643,
+        "pilots": 20,
+        "distinct_pilots": 16,
+        "final_campaigns": 8,
+        "seconds": 0.14818964000005508
+      },
+      "candidate": {
+        "net": 2665481.3378725257,
+        "cost": 44072.0,
+        "contacts": 9411,
+        "unique": 7559,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 10,
+        "seconds": 0.14352749600038806
+      },
+      "difference": -1609457.9852801943
+    },
+    {
+      "scenario": "positive",
+      "model_seed": 0,
+      "seed": 2,
+      "baseline": {
+        "net": 3812208.624628717,
+        "cost": 63562.0,
+        "contacts": 14933,
+        "unique": 12103,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 10,
+        "seconds": 0.1493485339997278
+      },
+      "candidate": {
+        "net": 2385634.655522638,
+        "cost": 99968.0,
+        "contacts": 9687,
+        "unique": 7488,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 8,
+        "seconds": 0.14541949500016926
+      },
+      "difference": -1426573.969106079
+    },
+    {
+      "scenario": "positive",
+      "model_seed": 0,
+      "seed": 3,
+      "baseline": {
+        "net": 3756237.172893418,
+        "cost": 63082.0,
+        "contacts": 14893,
+        "unique": 11703,
+        "pilots": 20,
+        "distinct_pilots": 15,
+        "final_campaigns": 9,
+        "seconds": 0.14987775199915632
+      },
+      "candidate": {
+        "net": 2383175.116745619,
+        "cost": 63008.0,
+        "contacts": 9870,
+        "unique": 7494,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 9,
+        "seconds": 0.14647431400044297
+      },
+      "difference": -1373062.056147799
+    },
+    {
+      "scenario": "positive",
+      "model_seed": 0,
+      "seed": 4,
+      "baseline": {
+        "net": 3219012.5476306435,
+        "cost": 56004.0,
+        "contacts": 11489,
+        "unique": 9239,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 7,
+        "seconds": 0.14460944299935363
+      },
+      "candidate": {
+        "net": 2360920.7653401513,
+        "cost": 62824.0,
+        "contacts": 9410,
+        "unique": 7307,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 5,
+        "seconds": 0.15261365799960913
+      },
+      "difference": -858091.7822904922
+    },
+    {
+      "scenario": "negative",
+      "model_seed": 0,
+      "seed": 0,
+      "baseline": {
+        "net": -743582.422057379,
+        "cost": 25120.0,
+        "contacts": 2910,
+        "unique": 2535,
+        "pilots": 20,
+        "distinct_pilots": 14,
+        "final_campaigns": 1,
+        "seconds": 0.14106321600047522
+      },
+      "candidate": {
+        "net": -621325.9556375542,
+        "cost": 24984.0,
+        "contacts": 2410,
+        "unique": 2004,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 1,
+        "seconds": 0.13806558000032965
+      },
+      "difference": 122256.46641982486
+    },
+    {
+      "scenario": "negative",
+      "model_seed": 0,
+      "seed": 1,
+      "baseline": {
+        "net": -823779.6248585967,
+        "cost": 25120.0,
+        "contacts": 3060,
+        "unique": 2616,
+        "pilots": 20,
+        "distinct_pilots": 13,
+        "final_campaigns": 1,
+        "seconds": 0.13684429299974
+      },
+      "candidate": {
+        "net": -556887.1877918352,
+        "cost": 25040.0,
+        "contacts": 2168,
+        "unique": 1807,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 1,
+        "seconds": 0.13660919100038882
+      },
+      "difference": 266892.43706676154
+    },
+    {
+      "scenario": "negative",
+      "model_seed": 0,
+      "seed": 2,
+      "baseline": {
+        "net": -1210332.884422618,
+        "cost": 52474.0,
+        "contacts": 4657,
+        "unique": 3836,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 3,
+        "seconds": 0.1598743819995434
+      },
+      "candidate": {
+        "net": -571301.4721858602,
+        "cost": 25056.0,
+        "contacts": 2500,
+        "unique": 1849,
+        "pilots": 20,
+        "distinct_pilots": 14,
+        "final_campaigns": 1,
+        "seconds": 0.13067341900023166
+      },
+      "difference": 639031.4122367578
+    },
+    {
+      "scenario": "negative",
+      "model_seed": 0,
+      "seed": 3,
+      "baseline": {
+        "net": -884856.8738642216,
+        "cost": 25120.0,
+        "contacts": 3479,
+        "unique": 2836,
+        "pilots": 20,
+        "distinct_pilots": 12,
+        "final_campaigns": 2,
+        "seconds": 0.13724352799908957
+      },
+      "candidate": {
+        "net": -556010.1317752067,
+        "cost": 25040.0,
+        "contacts": 2267,
+        "unique": 1792,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 2,
+        "seconds": 0.13144452100095805
+      },
+      "difference": 328846.74208901497
+    },
+    {
+      "scenario": "negative",
+      "model_seed": 0,
+      "seed": 4,
+      "baseline": {
+        "net": -757369.927488633,
+        "cost": 25120.0,
+        "contacts": 3030,
+        "unique": 2477,
+        "pilots": 20,
+        "distinct_pilots": 12,
+        "final_campaigns": 1,
+        "seconds": 0.14124152499971387
+      },
+      "candidate": {
+        "net": -670373.8572220186,
+        "cost": 24984.0,
+        "contacts": 4437,
+        "unique": 2987,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 3,
+        "seconds": 0.1355271520005772
+      },
+      "difference": 86996.07026661432
+    },
+    {
+      "scenario": "null",
+      "model_seed": 0,
+      "seed": 0,
+      "baseline": {
+        "net": -31356.0,
+        "cost": 31356.0,
+        "contacts": 5555,
+        "unique": 3905,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 6,
+        "seconds": 0.1443277729995316
+      },
+      "candidate": {
+        "net": -25040.0,
+        "cost": 25040.0,
+        "contacts": 8908,
+        "unique": 7137,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 6,
+        "seconds": 0.1435106690005341
+      },
+      "difference": 6316.0
+    },
+    {
+      "scenario": "null",
+      "model_seed": 0,
+      "seed": 1,
+      "baseline": {
+        "net": -83186.0,
+        "cost": 83186.0,
+        "contacts": 11271,
+        "unique": 8578,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.1469028139999864
+      },
+      "candidate": {
+        "net": -62880.0,
+        "cost": 62880.0,
+        "contacts": 9227,
+        "unique": 7307,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 6,
+        "seconds": 0.1408359239994752
+      },
+      "difference": 20306.0
+    },
+    {
+      "scenario": "null",
+      "model_seed": 0,
+      "seed": 2,
+      "baseline": {
+        "net": -63562.0,
+        "cost": 63562.0,
+        "contacts": 12825,
+        "unique": 10195,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 9,
+        "seconds": 0.14508687200032
+      },
+      "candidate": {
+        "net": -98054.0,
+        "cost": 98054.0,
+        "contacts": 10950,
+        "unique": 8951,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 8,
+        "seconds": 0.14418504599962034
+      },
+      "difference": -34492.0
+    },
+    {
+      "scenario": "null",
+      "model_seed": 0,
+      "seed": 3,
+      "baseline": {
+        "net": -63320.0,
+        "cost": 63320.0,
+        "contacts": 8047,
+        "unique": 6398,
+        "pilots": 20,
+        "distinct_pilots": 16,
+        "final_campaigns": 6,
+        "seconds": 0.13795346400002018
+      },
+      "candidate": {
+        "net": -24928.0,
+        "cost": 24928.0,
+        "contacts": 3038,
+        "unique": 1959,
+        "pilots": 20,
+        "distinct_pilots": 13,
+        "final_campaigns": 2,
+        "seconds": 0.13140802899943083
+      },
+      "difference": 38392.0
+    },
+    {
+      "scenario": "null",
+      "model_seed": 0,
+      "seed": 4,
+      "baseline": {
+        "net": -56004.0,
+        "cost": 56004.0,
+        "contacts": 11238,
+        "unique": 9188,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 6,
+        "seconds": 0.13982850600041274
+      },
+      "candidate": {
+        "net": -24984.0,
+        "cost": 24984.0,
+        "contacts": 9410,
+        "unique": 7307,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 5,
+        "seconds": 0.1455279210003937
+      },
+      "difference": 31020.0
+    },
+    {
+      "scenario": "mixed",
+      "model_seed": 701,
+      "seed": 0,
+      "baseline": {
+        "net": 2731832.383525941,
+        "cost": 58030.0,
+        "contacts": 9581,
+        "unique": 7242,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.14572628299902135
+      },
+      "candidate": {
+        "net": 3843699.357374704,
+        "cost": 98288.0,
+        "contacts": 10177,
+        "unique": 7851,
+        "pilots": 20,
+        "distinct_pilots": 16,
+        "final_campaigns": 10,
+        "seconds": 0.14518356199914706
+      },
+      "difference": 1111866.973848763
+    },
+    {
+      "scenario": "mixed",
+      "model_seed": 701,
+      "seed": 1,
+      "baseline": {
+        "net": 2755831.0360633363,
+        "cost": 76306.0,
+        "contacts": 9551,
+        "unique": 7238,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 8,
+        "seconds": 0.14156831199943554
+      },
+      "candidate": {
+        "net": 4057585.7108979416,
+        "cost": 98232.0,
+        "contacts": 9776,
+        "unique": 7664,
+        "pilots": 20,
+        "distinct_pilots": 16,
+        "final_campaigns": 8,
+        "seconds": 0.141195742000491
+      },
+      "difference": 1301754.6748346053
+    },
+    {
+      "scenario": "mixed",
+      "model_seed": 701,
+      "seed": 2,
+      "baseline": {
+        "net": 2486369.601886238,
+        "cost": 57910.0,
+        "contacts": 13970,
+        "unique": 11386,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 9,
+        "seconds": 0.14151139500063437
+      },
+      "candidate": {
+        "net": 4057736.8298694147,
+        "cost": 98288.0,
+        "contacts": 9590,
+        "unique": 7664,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 8,
+        "seconds": 0.14724002799994196
+      },
+      "difference": 1571367.2279831767
+    },
+    {
+      "scenario": "mixed",
+      "model_seed": 701,
+      "seed": 3,
+      "baseline": {
+        "net": 2727628.504007915,
+        "cost": 58350.0,
+        "contacts": 9274,
+        "unique": 6848,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 9,
+        "seconds": 0.14711805499973707
+      },
+      "candidate": {
+        "net": 3953023.404154161,
+        "cost": 62000.0,
+        "contacts": 9509,
+        "unique": 7688,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 8,
+        "seconds": 0.15253792899966356
+      },
+      "difference": 1225394.900146246
+    },
+    {
+      "scenario": "mixed",
+      "model_seed": 701,
+      "seed": 4,
+      "baseline": {
+        "net": 1478051.3988176347,
+        "cost": 76306.0,
+        "contacts": 6837,
+        "unique": 5044,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 6,
+        "seconds": 0.14705661899824918
+      },
+      "candidate": {
+        "net": 1479080.970679575,
+        "cost": 98160.0,
+        "contacts": 5246,
+        "unique": 3701,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 8,
+        "seconds": 0.1456154420011444
+      },
+      "difference": 1029.571861940436
+    },
+    {
+      "scenario": "sparse",
+      "model_seed": 701,
+      "seed": 0,
+      "baseline": {
+        "net": 2045497.6490026172,
+        "cost": 36088.0,
+        "contacts": 6052,
+        "unique": 4732,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 3,
+        "seconds": 0.144190298000467
+      },
+      "candidate": {
+        "net": 2327224.563737845,
+        "cost": 62824.0,
+        "contacts": 8731,
+        "unique": 7169,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 5,
+        "seconds": 0.14134093200118514
+      },
+      "difference": 281726.9147352278
+    },
+    {
+      "scenario": "sparse",
+      "model_seed": 701,
+      "seed": 1,
+      "baseline": {
+        "net": 2808815.358094609,
+        "cost": 62840.0,
+        "contacts": 5700,
+        "unique": 4551,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 3,
+        "seconds": 0.13452920599956997
+      },
+      "candidate": {
+        "net": 2326353.858885847,
+        "cost": 62880.0,
+        "contacts": 8772,
+        "unique": 7169,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 7,
+        "seconds": 0.1477184989998932
+      },
+      "difference": -482461.49920876184
+    },
+    {
+      "scenario": "sparse",
+      "model_seed": 701,
+      "seed": 2,
+      "baseline": {
+        "net": 1390524.8446819203,
+        "cost": 94082.0,
+        "contacts": 14353,
+        "unique": 12153,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 7,
+        "seconds": 0.15179879599963897
+      },
+      "candidate": {
+        "net": 2302830.6863252176,
+        "cost": 62880.0,
+        "contacts": 9497,
+        "unique": 7526,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 8,
+        "seconds": 0.15974125899992941
+      },
+      "difference": 912305.8416432973
+    },
+    {
+      "scenario": "sparse",
+      "model_seed": 701,
+      "seed": 3,
+      "baseline": {
+        "net": 2457573.1099874238,
+        "cost": 62840.0,
+        "contacts": 7976,
+        "unique": 6564,
+        "pilots": 20,
+        "distinct_pilots": 17,
+        "final_campaigns": 5,
+        "seconds": 0.15160071599893854
+      },
+      "candidate": {
+        "net": 3129218.972782286,
+        "cost": 62880.0,
+        "contacts": 4433,
+        "unique": 3022,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 7,
+        "seconds": 0.15201418500146247
+      },
+      "difference": 671645.8627948621
+    },
+    {
+      "scenario": "sparse",
+      "model_seed": 701,
+      "seed": 4,
+      "baseline": {
+        "net": 959513.7399228396,
+        "cost": 33708.0,
+        "contacts": 12186,
+        "unique": 10540,
+        "pilots": 20,
+        "distinct_pilots": 18,
+        "final_campaigns": 5,
+        "seconds": 0.146479654000359
+      },
+      "candidate": {
+        "net": 3140905.4611824607,
+        "cost": 63008.0,
+        "contacts": 3995,
+        "unique": 2832,
+        "pilots": 20,
+        "distinct_pilots": 19,
+        "final_campaigns": 5,
+        "seconds": 0.14425030700112984
+      },
+      "difference": 2181391.721259621
+    }
+  ]
+}

@@ -110,17 +110,12 @@ def transfer_channel_evidence(candidates, observations, channels):
                       weighted + observation.n_actual * multiplier * observation.ratio,
                       max(prior_precision, 80 * multiplier ** 2))
     ratios = adjusted_ratios(observations)
-    base_multiplier = min(float(ch["conversion_multiplier"]) for ch in channels.values()
-                          if 0 < float(ch["conversion_multiplier"]) <= 1) if pools else 0.0
     for candidate in candidates:
         key = (candidate.cell.key, candidate.target_tariff)
         multiplier = float(channels[candidate.channel]["conversion_multiplier"])
         if key in pools and 0 < multiplier <= 1:
             precision, weighted, prior_precision = pools[key]
-            mean = weighted / (precision + prior_precision)
-            uncertainty = 0.804 * math.sqrt(precision) / (precision + prior_precision)
-            ratios[candidate.key] = (multiplier * mean
-                                     - (multiplier - base_multiplier) * uncertainty)
+            ratios[candidate.key] = multiplier * weighted / (precision + prior_precision)
     return [c for c in candidates if c.key in ratios], ratios
 
 

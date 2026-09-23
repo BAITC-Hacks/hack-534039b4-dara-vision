@@ -91,20 +91,33 @@ def campaign_score(candidate, ratio):
 def select_campaigns(candidates, estimated_ratios, resources):
     ranked = [(campaign_score(c, estimated_ratios[c.key]), c) for c in candidates if c.key in estimated_ratios]
     positives = sorted((item for item in ranked if item[0] > 0), key=lambda item: (-item[0], item[1].key))
-    selected, used_cells = [], set()
-    budget, contacts = resources.remaining_budget, resources.remaining_contacts
-    for score, candidate in positives:
-        if len(selected) >= 10:
-            break
-        if candidate.cell.key in used_cells or candidate.cell.audience_count > contacts:
-            continue
-        cost = candidate.cell.audience_count * candidate.cost_per_contact
-        if cost > budget + 1e-7:
-            continue
-        selected.append(candidate)
-        used_cells.add(candidate.cell.key)
-        budget -= cost
-        contacts -= candidate.cell.audience_count
+    def fill(first=None):
+        selected, used_cells = [], set()
+        budget, contacts, value = resources.remaining_budget, resources.remaining_contacts, 0.0
+        ordered = ([first] if first is not None else []) + positives
+        for score, candidate in ordered:
+            if len(selected) >= 10:
+                break
+            if candidate.cell.key in used_cells or candidate.cell.audience_count > contacts:
+                continue
+            cost = candidate.cell.audience_count * candidate.cost_per_contact
+            if cost > budget + 1e-7:
+                continue
+            selected.append(candidate)
+            used_cells.add(candidate.cell.key)
+            budget -= cost
+            contacts -= candidate.cell.audience_count
+            value += score
+        return value, selected
+
+    # Include the original greedy plan, then try each possible first choice.
+    # This captures cheap-channel substitutions without rounding budgets or
+    # exponential subset search. At most four options per measured migration.
+    best_value, selected = fill()
+    for first in positives:
+        value, alternative = fill(first)
+        if value > best_value + 1e-7:
+            best_value, selected = value, alternative
     if selected:
         return selected
     feasible = [(score, c) for score, c in ranked if c.cell.audience_count <= resources.remaining_contacts

@@ -1,0 +1,11 @@
+{
+  "source_url": "https://drive.google.com/uc?export=download&id=1cQUKtE_cm9TVXgzpcFwQYYUpmuFaJHHT",
+  "download_date": "2026-09-23",
+  "zip_sha256": "df1d955fb97816ff6de8ceb142ed589915d969f43f840a650dcdfbe12734f20b",
+  "customer_profile_sha256": "a85e9badf4cb51b1ba8c43a868498b6fa8075509f3cd8e19ef72e1c25a6dc815",
+  "migration_history_sha256": "c52d7dad11fccc7425afe6d36a44a1fa03c8cc148be2039ce264d0c5c100f230",
+  "development_seeds": "0-9",
+  "reserved_seeds": "100-119",
+  "runtime": {"python": "3.14.7", "pandas": "2.3.3", "numpy": "2.5.2"},
+  "policy_parameters": {"max_successful_pilots": 12, "pilot_size": 200, "shrinkage_pseudocount": 40, "risk_penalty_at_100": 0.025}
+}

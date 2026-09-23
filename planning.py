@@ -32,7 +32,8 @@ def build_cells(profile):
         if len(frame) <= 5000:
             if len(frame) >= 10:
                 ordered = "|".join(f"{k}={filters[k]}" for k in FILTER_COLUMNS if k in filters)
-                result.append(Cell(ordered, dict(filters), len(frame), float(frame["predicted_arpu"].sum())))
+                result.append(Cell(ordered, dict(filters), len(frame),
+                                   float(pd.to_numeric(frame["predicted_arpu"]).sum())))
             return
         if depth >= 2:
             return

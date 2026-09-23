@@ -16,6 +16,19 @@ sha256sum submission.csv
 
 Runtime is offline after installation. `Agent.act(env)` is the entry point. `agent.trace` contains pilot requests, feedback, selection changes, and final selection. `python scripts/evaluate.py --seeds 0 1 2 3 4 5 6 7 8 9 --out reports/development.json` writes a paired benchmark and Markdown trace report. The bundled `agent_template.py` is the unchanged baseline.
 
+## Three-minute demo
+
+From the repository root with the environment activated:
+
+```bash
+python local_eval.py
+python scripts/evaluate.py --seeds 42 --out /tmp/hackalem-demo.json
+python make_submission.py
+sha256sum submission.csv
+```
+
+The evaluator prints the official mock net and pilot count. Open `/tmp/hackalem-demo.md` to show the actual pilot feedback, updated selection and final campaigns; the report labels estimates separately from official mock results. `make_submission.py` creates the required CSV. Repeating the last two commands should produce the same hash. For the frozen paired benchmark and its limitations, show `reports/quality.md` and `reports/holdout.json` rather than rerunning reserved seeds for tuning.
+
 ## Limits and interpretation
 
 The strategy returns 1–10 campaigns, each with 10–5,000 customers, and reserves resources for at least one final campaign before each pilot. It permits at most 20 pilot attempts and validates the final plan against remaining contacts and budget. If every tested plan has a negative estimated score, the least harmful feasible one is returned as a contest fallback; that does not authorize a real campaign.

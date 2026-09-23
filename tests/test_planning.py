@@ -35,3 +35,9 @@ def test_oversized_split_and_bad_profile():
     p.loc[0, "predicted_arpu"] = -1
     with pytest.raises(ValueError, match="predicted_arpu"):
         build_cells(p)
+
+
+def test_numeric_text_arpu_is_summed_as_numbers():
+    p = profile(10)
+    p["predicted_arpu"] = ["100.0"] * 10
+    assert build_cells(p)[0].arpu_sum == 1000.0

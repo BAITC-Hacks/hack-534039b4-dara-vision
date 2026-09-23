@@ -28,6 +28,8 @@ sha256sum submission.csv
 
 `python scripts/evaluate.py --start 100 --stop 120 --out reports/reserved` runs the one-time paired reserved benchmark. It writes per-seed JSON, a readable Markdown report and a trace from the first seed. The comparison uses the unmodified `agent_template.py` on the same seeds. The script uses the official `local_eval.evaluate_agent` and `scoring_core`; it checks caps and sanitizer drops separately. Do not tune against reserved results while describing them as holdout.
 
+Frozen policy commit `6830b8f26acae2a870f0ef8bc8157a2599945f85` was tested once on seeds 100–119. The local synthetic median net was **1,201,924.62**, median paired improvement over the template **1,779,790.20**, minimum net **1,005,866.63**, negative runs **0/20**, and recorded violations **0**. See `reports/reserved.md` and `reports/reserved.json` for every seed. This meets the team's local quality threshold, with the transfer limitation below.
+
 ## Demo path
 
 1. Run `python local_eval.py` to see pilots and official scoring.

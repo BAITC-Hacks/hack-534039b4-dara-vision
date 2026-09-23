@@ -26,6 +26,31 @@ it falls back to profile and tariff data if that history is unavailable.
 on paired seeds and writes Markdown and JSON reports. For a single verbose
 official score, run `python local_eval.py`.
 
+## Five-minute demo
+
+From the repository directory, after setup:
+
+```bash
+python local_eval.py
+python scripts/evaluate.py --start 0 --count 10 --output reports/development.md
+python make_submission.py
+sha256sum submission.csv
+```
+
+The first command shows the official mock score, pilot count, remaining budget,
+and remaining contacts for seed 42. Open `reports/development.md` to see paired
+seed results and a trace excerpt: `pilot_observed` records feedback,
+`selection_updated` records the updated reserve, and `final_selected` records
+the resulting campaigns. The generator uses the official fixed seed 42. Run it
+twice to check that the CSV hash is unchanged; the committed file's SHA-256 is
+`79450c91f9d1ab68e249a8ed0fa1ef6908b00df9f406b8108f38e4d7625669ad`.
+
+The frozen policy's reserved mock evaluation is in `reports/reserved.md`
+(seeds 100–119). It records median net 3,421,236, median paired improvement
+3,865,759, zero negative runs, and zero reported violations. These figures
+describe the supplied synthetic mock only; do not use them as a prediction of
+the hidden judge or a real marketing campaign.
+
 ## Method
 
 The agent partitions the audience into nonoverlapping, representable tariff ×

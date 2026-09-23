@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+import socket
 
 import pandas as pd
 import pytest
@@ -60,3 +61,40 @@ def test_trace_resets_between_runs(monkeypatch):
     count = len(agent.trace)
     agent.act(fake_env(1))
     assert len(agent.trace) == count
+
+
+def test_fractional_pilot_count_is_rejected(monkeypatch):
+    monkeypatch.setattr(agent_module, "historical_hints", lambda: ({}, None))
+    env = fake_env(1)
+
+    def malformed(target_tariff, channel, n_customers, **filters):
+        env.remaining_contacts -= n_customers
+        env.pilots_left -= 1
+        return {"n_customers": n_customers + 0.5, "cost": 0,
+                "observed_lift_ratio": 0.2}
+
+    env.run_pilot = malformed
+    agent = Agent()
+    with pytest.raises(RuntimeError, match="no successful pilot"):
+        agent.act(env)
+    assert any(t["event"] == "pilot_failed" for t in agent.trace)
+
+
+def test_official_submission_is_offline_and_reproducible(monkeypatch):
+    from make_submission import build_submission
+    from mock_environment import make_mock_env
+
+    def no_network(*args, **kwargs):
+        raise AssertionError("network access during agent run")
+
+    monkeypatch.setattr(socket, "create_connection", no_network)
+    monkeypatch.setattr(socket.socket, "connect", no_network)
+    first_env, _ = make_mock_env(seed=42)
+    first_agent = Agent()
+    first_plan = first_agent.act(first_env)
+    assert 1 <= len(first_plan) <= 10
+    assert any(t["event"] == "pilot_observed" for t in first_agent.trace)
+    assert first_env.pilots_left < 20
+    assert first_env.remaining_budget >= 0
+    assert first_env.remaining_contacts >= 0
+    assert build_submission(Agent(), seed=42).equals(build_submission(Agent(), seed=42))

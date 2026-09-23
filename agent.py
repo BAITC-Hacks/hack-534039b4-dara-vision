@@ -78,10 +78,12 @@ class Agent:
                 break
             after = snapshot(env)
             try:
-                actual = int(result["n_customers"])
+                reported_n = result["n_customers"]
+                actual = int(reported_n)
                 cost = float(result["cost"])
                 ratio = float(result["observed_lift_ratio"])
-                if (actual != n or not math.isfinite(cost) or not math.isfinite(ratio)
+                if (isinstance(reported_n, bool) or reported_n != actual or actual != n
+                        or not math.isfinite(cost) or not math.isfinite(ratio)
                         or abs(cost - actual * candidate.cost_per_contact) > 1e-6
                         or before.remaining_contacts - after.remaining_contacts != actual
                         or abs(before.remaining_budget - after.remaining_budget - cost) > 1e-5

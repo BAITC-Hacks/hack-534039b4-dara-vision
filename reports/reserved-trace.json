@@ -2,31 +2,74 @@
   "seed": 100,
   "campaigns": [
     {
-      "campaign_name": "campaign_01_current_tariff-tariff_13_arpu_segment-LOW_target-tariff_8_channel-call",
-      "filter_arpu_segment": "LOW",
-      "filter_data_segment": null,
-      "filter_call_segment": null,
+      "campaign_name": "campaign_01",
       "filter_current_tariff": "tariff_13",
-      "target_tariff": "tariff_8",
-      "channel": "call"
-    },
-    {
-      "campaign_name": "campaign_02_current_tariff-tariff_13_arpu_segment-MID_target-tariff_8_channel-push",
       "filter_arpu_segment": "MID",
-      "filter_data_segment": null,
-      "filter_call_segment": null,
-      "filter_current_tariff": "tariff_13",
       "target_tariff": "tariff_8",
+      "channel": "digital_ads"
+    },
+    {
+      "campaign_name": "campaign_02",
+      "filter_current_tariff": "tariff_4",
+      "filter_arpu_segment": "MID",
+      "target_tariff": "tariff_8",
+      "channel": "digital_ads"
+    },
+    {
+      "campaign_name": "campaign_03",
+      "filter_current_tariff": "tariff_8",
+      "filter_arpu_segment": "MID",
+      "target_tariff": "tariff_10",
+      "channel": "sms"
+    },
+    {
+      "campaign_name": "campaign_04",
+      "filter_current_tariff": "tariff_8",
+      "filter_arpu_segment": "LOW",
+      "target_tariff": "tariff_9",
+      "channel": "sms"
+    },
+    {
+      "campaign_name": "campaign_05",
+      "filter_current_tariff": "tariff_11",
+      "filter_arpu_segment": "HIGH",
+      "target_tariff": "tariff_12",
       "channel": "push"
     },
     {
-      "campaign_name": "campaign_03_current_tariff-tariff_13_arpu_segment-HIGH_target-tariff_10_channel-push",
+      "campaign_name": "campaign_06",
+      "filter_current_tariff": "tariff_4",
       "filter_arpu_segment": "HIGH",
-      "filter_data_segment": null,
-      "filter_call_segment": null,
-      "filter_current_tariff": "tariff_13",
-      "target_tariff": "tariff_10",
+      "target_tariff": "tariff_14",
       "channel": "push"
+    },
+    {
+      "campaign_name": "campaign_07",
+      "filter_current_tariff": "tariff_15",
+      "filter_arpu_segment": "MID",
+      "target_tariff": "tariff_20",
+      "channel": "sms"
+    },
+    {
+      "campaign_name": "campaign_08",
+      "filter_current_tariff": "tariff_10",
+      "filter_arpu_segment": "LOW",
+      "target_tariff": "tariff_21",
+      "channel": "push"
+    },
+    {
+      "campaign_name": "campaign_09",
+      "filter_current_tariff": "tariff_1",
+      "filter_arpu_segment": "LOW",
+      "target_tariff": "tariff_4",
+      "channel": "sms"
+    },
+    {
+      "campaign_name": "campaign_10",
+      "filter_current_tariff": "tariff_6",
+      "filter_arpu_segment": "LOW",
+      "target_tariff": "tariff_13",
+      "channel": "sms"
     }
   ],
   "trace": [
@@ -34,32 +77,21 @@
       "schema_version": 1,
       "event": "input_validated",
       "step": 0,
-      "cells": 54,
-      "tariffs": 21,
-      "channels": [
-        "call",
-        "digital_ads",
-        "push",
-        "sms"
-      ],
-      "resources": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 15000,
-        "pilots_left": 20
-      }
+      "profile_size": 23441,
+      "cells": 54
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 1,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=HIGH|target=tariff_12|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads",
       "filters": {
-        "current_tariff": "tariff_8",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_12",
-      "channel": "push",
-      "requested_n": 100,
+      "target": "tariff_8",
+      "channel": "digital_ads",
+      "requested_n": 200,
       "resources_before": {
         "remaining_budget": 100000.0,
         "remaining_contacts": 15000,
@@ -70,13 +102,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 2,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "actual_n": 100,
-      "ratio": 0.025083954122838408,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads",
+      "actual_n": 200,
+      "cost": 4400.0,
+      "ratio": 0.23441667895929838,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14900,
+        "remaining_budget": 95600.0,
+        "remaining_contacts": 14800,
         "pilots_left": 19
       }
     },
@@ -84,29 +116,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 3,
-      "selected_keys": [
-        "current_tariff=tariff_8|arpu_segment=HIGH|target=tariff_12|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_8|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_8|arpu_segment=HIGH|target=tariff_12|channel=push": -631863.777
-      }
+      "tested": 1,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 4,
-      "candidate_key": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads",
       "filters": {
-        "current_tariff": "tariff_10",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_12",
-      "channel": "push",
-      "requested_n": 100,
+      "target": "tariff_8",
+      "channel": "digital_ads",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14900,
+        "remaining_budget": 95600.0,
+        "remaining_contacts": 14800,
         "pilots_left": 19
       }
     },
@@ -114,13 +141,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 5,
-      "candidate_key": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "actual_n": 100,
-      "ratio": 0.05829068630044175,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads",
+      "actual_n": 200,
+      "cost": 4400.0,
+      "ratio": 0.2623362957053652,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14800,
+        "remaining_budget": 91200.0,
+        "remaining_contacts": 14600,
         "pilots_left": 18
       }
     },
@@ -128,29 +155,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 6,
-      "selected_keys": [
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01
-      }
+      "tested": 1,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 7,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=HIGH|target=tariff_12|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_4|target=tariff_8|channel=digital_ads",
       "filters": {
-        "current_tariff": "tariff_4",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_4",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_12",
-      "channel": "push",
-      "requested_n": 100,
+      "target": "tariff_8",
+      "channel": "digital_ads",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14800,
+        "remaining_budget": 91200.0,
+        "remaining_contacts": 14600,
         "pilots_left": 18
       }
     },
@@ -158,13 +180,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 8,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "actual_n": 100,
-      "ratio": -0.07717299852772043,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_4|target=tariff_8|channel=digital_ads",
+      "actual_n": 200,
+      "cost": 4400.0,
+      "ratio": 0.14954480821264793,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14700,
+        "remaining_budget": 86800.0,
+        "remaining_contacts": 14400,
         "pilots_left": 17
       }
     },
@@ -172,29 +194,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 9,
-      "selected_keys": [
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01
-      }
+      "tested": 2,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 10,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=sms",
       "filters": {
-        "current_tariff": "tariff_8",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_11",
-      "channel": "push",
-      "requested_n": 100,
+      "target": "tariff_8",
+      "channel": "sms",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14700,
+        "remaining_budget": 86800.0,
+        "remaining_contacts": 14400,
         "pilots_left": 17
       }
     },
@@ -202,13 +219,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 11,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-      "actual_n": 100,
-      "ratio": 0.10175364380849065,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=sms",
+      "actual_n": 200,
+      "cost": 800.0,
+      "ratio": 0.22755112520423013,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14600,
+        "remaining_budget": 86000.0,
+        "remaining_contacts": 14200,
         "pilots_left": 16
       }
     },
@@ -216,31 +233,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 12,
-      "selected_keys": [
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01
-      }
+      "tested": 3,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 13,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_8|target=tariff_9|channel=call",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_8",
-      "channel": "push",
-      "requested_n": 100,
+      "target": "tariff_9",
+      "channel": "call",
+      "requested_n": 50,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14600,
+        "remaining_budget": 86000.0,
+        "remaining_contacts": 14200,
         "pilots_left": 16
       }
     },
@@ -248,13 +258,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 14,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "actual_n": 100,
-      "ratio": 0.1848820188635242,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_8|target=tariff_9|channel=call",
+      "actual_n": 50,
+      "cost": 8000.0,
+      "ratio": 0.6597946069353056,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14500,
+        "remaining_budget": 78000.0,
+        "remaining_contacts": 14150,
         "pilots_left": 15
       }
     },
@@ -262,33 +272,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 15,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01
-      }
+      "tested": 4,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 16,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_8|target=tariff_10|channel=sms",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "MID"
       },
       "target": "tariff_10",
-      "channel": "push",
-      "requested_n": 100,
+      "channel": "sms",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14500,
+        "remaining_budget": 78000.0,
+        "remaining_contacts": 14150,
         "pilots_left": 15
       }
     },
@@ -296,13 +297,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 17,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push",
-      "actual_n": 100,
-      "ratio": 0.06481180525268243,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_8|target=tariff_10|channel=sms",
+      "actual_n": 200,
+      "cost": 800.0,
+      "ratio": 0.1052308468207391,
       "resources_after": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14400,
+        "remaining_budget": 77200.0,
+        "remaining_contacts": 13950,
         "pilots_left": 14
       }
     },
@@ -310,35 +311,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 18,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 5,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 19,
-      "candidate_key": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_8|target=tariff_9|channel=sms",
       "filters": {
-        "current_tariff": "tariff_11",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_12",
+      "target": "tariff_9",
       "channel": "sms",
-      "requested_n": 100,
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 100000.0,
-        "remaining_contacts": 14400,
+        "remaining_budget": 77200.0,
+        "remaining_contacts": 13950,
         "pilots_left": 14
       }
     },
@@ -346,13 +336,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 20,
-      "candidate_key": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "actual_n": 100,
-      "ratio": 0.1911752720268772,
-      "cost": 400.0,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_8|target=tariff_9|channel=sms",
+      "actual_n": 200,
+      "cost": 800.0,
+      "ratio": 0.4414862225245495,
       "resources_after": {
-        "remaining_budget": 99600.0,
-        "remaining_contacts": 14300,
+        "remaining_budget": 76400.0,
+        "remaining_contacts": 13750,
         "pilots_left": 13
       }
     },
@@ -360,37 +350,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 21,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 6,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 22,
-      "candidate_key": "current_tariff=tariff_14|arpu_segment=HIGH|target=tariff_12|channel=digital_ads",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=sms",
       "filters": {
-        "current_tariff": "tariff_14",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "HIGH"
       },
       "target": "tariff_12",
-      "channel": "digital_ads",
-      "requested_n": 100,
+      "channel": "sms",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 99600.0,
-        "remaining_contacts": 14300,
+        "remaining_budget": 76400.0,
+        "remaining_contacts": 13750,
         "pilots_left": 13
       }
     },
@@ -398,13 +375,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 23,
-      "candidate_key": "current_tariff=tariff_14|arpu_segment=HIGH|target=tariff_12|channel=digital_ads",
-      "actual_n": 100,
-      "ratio": -0.06126571042526909,
-      "cost": 2200.0,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=sms",
+      "actual_n": 200,
+      "cost": 800.0,
+      "ratio": -0.02392393966179561,
       "resources_after": {
-        "remaining_budget": 97400.0,
-        "remaining_contacts": 14200,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13550,
         "pilots_left": 12
       }
     },
@@ -412,37 +389,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 24,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 7,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 25,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "LOW"
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "HIGH"
       },
-      "target": "tariff_8",
-      "channel": "call",
-      "requested_n": 100,
+      "target": "tariff_12",
+      "channel": "push",
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 97400.0,
-        "remaining_contacts": 14200,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13550,
         "pilots_left": 12
       }
     },
@@ -450,13 +414,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 26,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "actual_n": 100,
-      "ratio": 0.8298490358032151,
-      "cost": 16000.0,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push",
+      "actual_n": 200,
+      "cost": 0.0,
+      "ratio": 0.10806935737564102,
       "resources_after": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 14100,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13350,
         "pilots_left": 11
       }
     },
@@ -464,39 +428,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 27,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 8,
+      "reserve": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 28,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=MID|target=tariff_14|channel=push",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push",
       "filters": {
-        "current_tariff": "tariff_4",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_11",
+        "filter_arpu_segment": "HIGH"
       },
-      "target": "tariff_14",
+      "target": "tariff_12",
       "channel": "push",
-      "requested_n": 100,
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 14100,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13350,
         "pilots_left": 11
       }
     },
@@ -504,13 +453,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 29,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=MID|target=tariff_14|channel=push",
-      "actual_n": 100,
-      "ratio": -0.09908411989216616,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push",
+      "actual_n": 200,
       "cost": 0.0,
+      "ratio": -0.06772732307888348,
       "resources_after": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 14000,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13150,
         "pilots_left": 10
       }
     },
@@ -518,39 +467,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 30,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 8,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 31,
-      "candidate_key": "current_tariff=tariff_15|arpu_segment=MID|target=tariff_9|channel=push",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_8|target=tariff_14|channel=push",
       "filters": {
-        "current_tariff": "tariff_15",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "HIGH"
       },
-      "target": "tariff_9",
+      "target": "tariff_14",
       "channel": "push",
-      "requested_n": 80,
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 14000,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 13150,
         "pilots_left": 10
       }
     },
@@ -558,13 +492,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 32,
-      "candidate_key": "current_tariff=tariff_15|arpu_segment=MID|target=tariff_9|channel=push",
-      "actual_n": 80,
-      "ratio": -0.04375568241219292,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_8|target=tariff_14|channel=push",
+      "actual_n": 200,
       "cost": 0.0,
+      "ratio": -0.034591035991057235,
       "resources_after": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 13920,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12950,
         "pilots_left": 9
       }
     },
@@ -572,39 +506,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 33,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 9,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 34,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=LOW|target=tariff_19|channel=push",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_4|target=tariff_14|channel=push",
       "filters": {
-        "current_tariff": "tariff_4",
-        "arpu_segment": "LOW"
+        "filter_current_tariff": "tariff_4",
+        "filter_arpu_segment": "HIGH"
       },
-      "target": "tariff_19",
+      "target": "tariff_14",
       "channel": "push",
-      "requested_n": 100,
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 13920,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12950,
         "pilots_left": 9
       }
     },
@@ -612,13 +531,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 35,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=LOW|target=tariff_19|channel=push",
-      "actual_n": 100,
-      "ratio": 0.005334507585158451,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_4|target=tariff_14|channel=push",
+      "actual_n": 200,
       "cost": 0.0,
+      "ratio": 0.0073625640029552,
       "resources_after": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 13820,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12750,
         "pilots_left": 8
       }
     },
@@ -626,39 +545,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 36,
-      "selected_keys": [
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
-      "estimated_scores": {
-        "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms": 1433064.53,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 10,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 37,
-      "candidate_key": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_8|target=tariff_19|channel=push",
       "filters": {
-        "current_tariff": "tariff_11",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_8",
+        "filter_arpu_segment": "HIGH"
       },
-      "target": "tariff_12",
-      "channel": "sms",
+      "target": "tariff_19",
+      "channel": "push",
       "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 81400.0,
-        "remaining_contacts": 13820,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12750,
         "pilots_left": 8
       }
     },
@@ -666,13 +570,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 38,
-      "candidate_key": "current_tariff=tariff_11|arpu_segment=HIGH|target=tariff_12|channel=sms",
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_8|target=tariff_19|channel=push",
       "actual_n": 200,
-      "ratio": -0.0989454990746884,
-      "cost": 800.0,
+      "cost": 0.0,
+      "ratio": -0.10676081000050038,
       "resources_after": {
-        "remaining_budget": 80600.0,
-        "remaining_contacts": 13620,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12550,
         "pilots_left": 7
       }
     },
@@ -680,37 +584,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 39,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 485348.368,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 11,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 40,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_6|target=tariff_13|channel=sms",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_6",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_8",
-      "channel": "push",
-      "requested_n": 200,
+      "target": "tariff_13",
+      "channel": "sms",
+      "requested_n": 30,
       "resources_before": {
-        "remaining_budget": 80600.0,
-        "remaining_contacts": 13620,
+        "remaining_budget": 75600.0,
+        "remaining_contacts": 12550,
         "pilots_left": 7
       }
     },
@@ -718,13 +609,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 41,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "actual_n": 200,
-      "ratio": 0.07177838817723722,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_6|target=tariff_13|channel=sms",
+      "actual_n": 30,
+      "cost": 120.0,
+      "ratio": 0.11962279035621173,
       "resources_after": {
-        "remaining_budget": 80600.0,
-        "remaining_contacts": 13420,
+        "remaining_budget": 75480.0,
+        "remaining_contacts": 12520,
         "pilots_left": 6
       }
     },
@@ -732,37 +623,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 42,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 381733.338,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 12,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 43,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_1|target=tariff_4|channel=sms",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "LOW"
+        "filter_current_tariff": "tariff_1",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_8",
-      "channel": "call",
-      "requested_n": 200,
+      "target": "tariff_4",
+      "channel": "sms",
+      "requested_n": 40,
       "resources_before": {
-        "remaining_budget": 80600.0,
-        "remaining_contacts": 13420,
+        "remaining_budget": 75480.0,
+        "remaining_contacts": 12520,
         "pilots_left": 6
       }
     },
@@ -770,13 +648,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 44,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "actual_n": 200,
-      "ratio": 0.6756704675618601,
-      "cost": 32000.0,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_1|target=tariff_4|channel=sms",
+      "actual_n": 40,
+      "cost": 160.0,
+      "ratio": 0.1627184490341137,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 13220,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12480,
         "pilots_left": 5
       }
     },
@@ -784,37 +662,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 45,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push": 302372.201,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 13,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 46,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_13|target=tariff_1|channel=push",
       "filters": {
-        "current_tariff": "tariff_8",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_13",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_11",
+      "target": "tariff_1",
       "channel": "push",
       "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 13220,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12480,
         "pilots_left": 5
       }
     },
@@ -822,13 +687,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 47,
-      "candidate_key": "current_tariff=tariff_8|arpu_segment=MID|target=tariff_11|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_13|target=tariff_1|channel=push",
       "actual_n": 200,
-      "ratio": -0.023517363881909586,
       "cost": 0.0,
+      "ratio": -0.0004827181666118424,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 13020,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12280,
         "pilots_left": 4
       }
     },
@@ -836,35 +701,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 48,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push": 160534.01,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 14,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 49,
-      "candidate_key": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_4|target=tariff_19|channel=push",
       "filters": {
-        "current_tariff": "tariff_10",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_4",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_12",
+      "target": "tariff_19",
       "channel": "push",
       "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 13020,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12280,
         "pilots_left": 4
       }
     },
@@ -872,13 +726,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 50,
-      "candidate_key": "current_tariff=tariff_10|arpu_segment=HIGH|target=tariff_12|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_4|target=tariff_19|channel=push",
       "actual_n": 200,
-      "ratio": -0.03878111880436602,
       "cost": 0.0,
+      "ratio": -0.027362956830600884,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12820,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12080,
         "pilots_left": 3
       }
     },
@@ -886,33 +740,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 51,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 41932.356
-      }
+      "tested": 15,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 52,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=sms",
       "filters": {
-        "current_tariff": "tariff_13",
-        "arpu_segment": "HIGH"
+        "filter_current_tariff": "tariff_15",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_10",
-      "channel": "push",
-      "requested_n": 200,
+      "target": "tariff_20",
+      "channel": "sms",
+      "requested_n": 80,
       "resources_before": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12820,
+        "remaining_budget": 75320.0,
+        "remaining_contacts": 12080,
         "pilots_left": 3
       }
     },
@@ -920,13 +765,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 53,
-      "candidate_key": "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push",
-      "actual_n": 200,
-      "ratio": 0.10233410892467686,
-      "cost": 0.0,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=sms",
+      "actual_n": 80,
+      "cost": 320.0,
+      "ratio": 0.1667283852774067,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12620,
+        "remaining_budget": 75000.0,
+        "remaining_contacts": 12000,
         "pilots_left": 2
       }
     },
@@ -934,33 +779,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 54,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 219243.789
-      }
+      "tested": 16,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 55,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=LOW|target=tariff_19|channel=push",
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=push",
       "filters": {
-        "current_tariff": "tariff_4",
-        "arpu_segment": "LOW"
+        "filter_current_tariff": "tariff_15",
+        "filter_arpu_segment": "MID"
       },
-      "target": "tariff_19",
+      "target": "tariff_20",
       "channel": "push",
-      "requested_n": 200,
+      "requested_n": 80,
       "resources_before": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12620,
+        "remaining_budget": 75000.0,
+        "remaining_contacts": 12000,
         "pilots_left": 2
       }
     },
@@ -968,13 +804,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 56,
-      "candidate_key": "current_tariff=tariff_4|arpu_segment=LOW|target=tariff_19|channel=push",
-      "actual_n": 200,
-      "ratio": 0.022358188324332277,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=push",
+      "actual_n": 80,
       "cost": 0.0,
+      "ratio": 0.03415498511869771,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12420,
+        "remaining_budget": 75000.0,
+        "remaining_contacts": 11920,
         "pilots_left": 1
       }
     },
@@ -982,33 +818,24 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 57,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 219243.789
-      }
+      "tested": 17,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "pilot_requested",
       "step": 58,
-      "candidate_key": "current_tariff=tariff_15|arpu_segment=MID|target=tariff_9|channel=push",
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_10|target=tariff_21|channel=push",
       "filters": {
-        "current_tariff": "tariff_15",
-        "arpu_segment": "MID"
+        "filter_current_tariff": "tariff_10",
+        "filter_arpu_segment": "LOW"
       },
-      "target": "tariff_9",
+      "target": "tariff_21",
       "channel": "push",
-      "requested_n": 80,
+      "requested_n": 200,
       "resources_before": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12420,
+        "remaining_budget": 75000.0,
+        "remaining_contacts": 11920,
         "pilots_left": 1
       }
     },
@@ -1016,13 +843,13 @@
       "schema_version": 1,
       "event": "pilot_observed",
       "step": 59,
-      "candidate_key": "current_tariff=tariff_15|arpu_segment=MID|target=tariff_9|channel=push",
-      "actual_n": 80,
-      "ratio": 0.021770295601595352,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_10|target=tariff_21|channel=push",
+      "actual_n": 200,
       "cost": 0.0,
+      "ratio": 0.01893163722854513,
       "resources_after": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12340,
+        "remaining_budget": 75000.0,
+        "remaining_contacts": 11720,
         "pilots_left": 0
       }
     },
@@ -1030,33 +857,88 @@
       "schema_version": 1,
       "event": "selection_updated",
       "step": 60,
-      "selected_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "reserve": "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-      "estimated_scores": {
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call": 429818.944,
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push": 382005.569,
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push": 219243.789
-      }
+      "tested": 18,
+      "reserve": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads"
     },
     {
       "schema_version": 1,
       "event": "final_selected",
       "step": 61,
-      "candidate_keys": [
-        "current_tariff=tariff_13|arpu_segment=LOW|target=tariff_8|channel=call",
-        "current_tariff=tariff_13|arpu_segment=MID|target=tariff_8|channel=push",
-        "current_tariff=tariff_13|arpu_segment=HIGH|target=tariff_10|channel=push"
-      ],
-      "campaign_count": 3,
-      "resources": {
-        "remaining_budget": 48600.0,
-        "remaining_contacts": 12340,
-        "pilots_left": 0
-      }
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads",
+      "estimated_score": 1012536.2656536783,
+      "audience_count": 1022
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 62,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_4|target=tariff_8|channel=digital_ads",
+      "estimated_score": 596878.8728774057,
+      "audience_count": 1227
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 63,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_8|target=tariff_10|channel=sms",
+      "estimated_score": 596279.9049543927,
+      "audience_count": 1720
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 64,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_8|target=tariff_9|channel=sms",
+      "estimated_score": 411989.07152511267,
+      "audience_count": 457
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 65,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_11|target=tariff_12|channel=push",
+      "estimated_score": 238282.04101358872,
+      "audience_count": 1633
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 66,
+      "candidate_key": "filter_arpu_segment=HIGH|filter_current_tariff=tariff_4|target=tariff_14|channel=push",
+      "estimated_score": 83060.88029619293,
+      "audience_count": 2108
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 67,
+      "candidate_key": "filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=sms",
+      "estimated_score": 33207.59936781738,
+      "audience_count": 80
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 68,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_10|target=tariff_21|channel=push",
+      "estimated_score": 13147.123725046109,
+      "audience_count": 370
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 69,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_1|target=tariff_4|channel=sms",
+      "estimated_score": 7011.5222541235025,
+      "audience_count": 40
+    },
+    {
+      "schema_version": 1,
+      "event": "final_selected",
+      "step": 70,
+      "candidate_key": "filter_arpu_segment=LOW|filter_current_tariff=tariff_6|target=tariff_13|channel=sms",
+      "estimated_score": 3045.858769718928,
+      "audience_count": 30
     }
   ],
   "agent_stdout": "",

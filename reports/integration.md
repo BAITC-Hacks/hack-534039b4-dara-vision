@@ -55,5 +55,17 @@ mock net. Do not present synthetic scores as hidden-judge predictions.
 
 ## Validation
 
-Initial integrated suite: 15 passed; README checker passed. Final clean-environment
-checks and replay results will be recorded after the integration code commit.
+Clean virtual environment installation succeeded (Python 3.14.7; pinned NumPy
+2.5.2, pandas 2.3.3, pytest 9.1.1). Final suite: **17 passed in 2.01s**, including
+blocked sockets, reversed pilot feedback, malformed feedback, resource reserve,
+numeric-text ARPU, actual cap detection and CSV repeatability. README checker:
+**OK**. `git diff --check`: passed.
+
+Frozen integration code: `87062c9efe59f7f64b14f1cb5fe40ce79dd9a867`.
+Official `local_eval.py --runs 10`: 10/10 positive, median net **3,432,896.67**.
+Paired reproduction 0–9 and 100–119: **zero detected violations**. All 20 reserved
+net values exactly match Agent 1's original report: median **3,421,236.20**,
+median paired improvement **3,865,758.85**, minimum **2,877,447.10**, 0/20 losses.
+Reports and full traces are checked in. Two official submission runs took 0.655s
+and 0.620s and matched the expected CSV hash above. No hidden-judge or production
+performance claim follows from these measurements.

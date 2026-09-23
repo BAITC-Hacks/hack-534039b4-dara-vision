@@ -45,7 +45,7 @@ the resulting campaigns. The generator uses the official fixed seed 42. Run it
 twice to check that the CSV hash is unchanged; the committed file's SHA-256 is
 `79450c91f9d1ab68e249a8ed0fa1ef6908b00df9f406b8108f38e4d7625669ad`.
 
-The frozen policy's reserved mock evaluation is in `reports/reserved.md`
+The integrated policy's reproduction of the previously inspected reserved seeds is in `reports/reserved.md`
 (seeds 100–119). It records median net 3,421,236, median paired improvement
 3,865,759, zero negative runs, and zero reported violations. These figures
 describe the supplied synthetic mock only; do not use them as a prediction of

@@ -1,230 +1,232 @@
 {
   "status": "completed",
   "seed_range": "100–119",
-  "policy_commit": "6830b8f26acae2a870f0ef8bc8157a2599945f85",
+  "policy_commit": "87062c9efe59f7f64b14f1cb5fe40ce79dd9a867",
   "per_seed": [
     {
       "seed": 100,
-      "agent_net": 1132789.8116055687,
+      "agent_net": 3520292.371367489,
       "template_net": -1248998.0135772715,
-      "cost": 91560.0,
-      "contacts": 4449,
+      "cost": 83786.0,
+      "contacts": 11967,
       "pilots": 20,
-      "final_campaigns": 3,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 2381787.82518284
+      "difference": 4769290.38494476
     },
     {
       "seed": 101,
-      "agent_net": 1103654.0455623427,
+      "agent_net": 3342638.5811133278,
       "template_net": -73999.17177049488,
-      "cost": 95160.0,
-      "contacts": 9498,
+      "cost": 95910.0,
+      "contacts": 13622,
       "pilots": 20,
-      "final_campaigns": 7,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1177653.2173328376
+      "difference": 3416637.7528838227
     },
     {
       "seed": 102,
-      "agent_net": 1310785.3188645644,
+      "agent_net": 2877447.096436659,
       "template_net": -1264594.9092211844,
-      "cost": 98092.0,
-      "contacts": 14962,
+      "cost": 76906.0,
+      "contacts": 6805,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 8,
       "violations": [],
-      "difference": 2575380.228085749
+      "difference": 4142042.0056578433
     },
     {
       "seed": 103,
-      "agent_net": 1005866.6274692565,
+      "agent_net": 3139603.021149371,
       "template_net": -404146.61295603286,
-      "cost": 90760.0,
-      "contacts": 9071,
+      "cost": 76626.0,
+      "contacts": 11264,
       "pilots": 20,
-      "final_campaigns": 5,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1410013.2404252894
+      "difference": 3543749.634105404
     },
     {
       "seed": 104,
-      "agent_net": 1400534.044942677,
+      "agent_net": 3241386.9021586757,
       "template_net": -383229.97806788434,
-      "cost": 98092.0,
-      "contacts": 8892,
+      "cost": 76906.0,
+      "contacts": 14973,
       "pilots": 20,
-      "final_campaigns": 7,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1783764.0230105612
+      "difference": 3624616.88022656
     },
     {
       "seed": 105,
-      "agent_net": 1260095.1905421782,
+      "agent_net": 3340522.600051156,
       "template_net": -1249171.5615383198,
-      "cost": 98092.0,
-      "contacts": 10752,
+      "cost": 83306.0,
+      "contacts": 9123,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 2509266.7520804983
+      "difference": 4589694.161589475
     },
     {
       "seed": 106,
-      "agent_net": 1041865.8342222569,
+      "agent_net": 3158708.5376458764,
       "template_net": -643160.9784381064,
-      "cost": 90760.0,
-      "contacts": 8190,
+      "cost": 76586.0,
+      "contacts": 13485,
       "pilots": 20,
-      "final_campaigns": 5,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1685026.8126603633
+      "difference": 3801869.516083983
     },
     {
       "seed": 107,
-      "agent_net": 1203338.8361255648,
+      "agent_net": 3290901.569092711,
       "template_net": -102423.30152807856,
-      "cost": 83518.0,
-      "contacts": 7998,
+      "cost": 65070.0,
+      "contacts": 10505,
       "pilots": 20,
-      "final_campaigns": 4,
+      "final_campaigns": 9,
       "violations": [],
-      "difference": 1305762.1376536433
+      "difference": 3393324.8706207895
     },
     {
       "seed": 108,
-      "agent_net": 1105998.9855750068,
+      "agent_net": 3560449.2082742956,
       "template_net": -1232413.2725694356,
-      "cost": 95160.0,
-      "contacts": 9239,
+      "cost": 83186.0,
+      "contacts": 14985,
       "pilots": 20,
-      "final_campaigns": 5,
+      "final_campaigns": 9,
       "violations": [],
-      "difference": 2338412.2581444425
+      "difference": 4792862.480843731
     },
     {
       "seed": 109,
-      "agent_net": 1325804.3526676157,
+      "agent_net": 3604283.366673064,
       "template_net": -638054.0368327426,
-      "cost": 90760.0,
-      "contacts": 13714,
+      "cost": 90198.0,
+      "contacts": 14942,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1963858.3895003584
+      "difference": 4242337.403505807
     },
     {
       "seed": 110,
-      "agent_net": 1169212.3954648734,
+      "agent_net": 3453836.8472839473,
       "template_net": -1241288.9921806762,
-      "cost": 90760.0,
-      "contacts": 10346,
+      "cost": 89718.0,
+      "contacts": 10726,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 2410501.3876455496
+      "difference": 4695125.8394646235
     },
     {
       "seed": 111,
-      "agent_net": 1374395.198942516,
+      "agent_net": 3479604.3414312303,
       "template_net": -110374.3334219319,
-      "cost": 98092.0,
-      "contacts": 8101,
+      "cost": 83306.0,
+      "contacts": 14875,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1484769.5323644478
+      "difference": 3589978.6748531624
     },
     {
       "seed": 112,
-      "agent_net": 1420798.817061672,
+      "agent_net": 3249227.289480587,
       "template_net": -355017.5604710174,
-      "cost": 98092.0,
-      "contacts": 12092,
+      "cost": 65390.0,
+      "contacts": 12833,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 9,
       "violations": [],
-      "difference": 1775816.3775326894
+      "difference": 3604244.8499516044
     },
     {
       "seed": 113,
-      "agent_net": 1266794.5273242518,
+      "agent_net": 3164710.2261474226,
       "template_net": -609670.348029474,
-      "cost": 90760.0,
-      "contacts": 9287,
+      "cost": 76746.0,
+      "contacts": 13525,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1876464.8753537259
+      "difference": 3774380.5741768964
     },
     {
       "seed": 114,
-      "agent_net": 1200510.407935482,
+      "agent_net": 3388635.5590648474,
       "template_net": -601256.4120660458,
-      "cost": 95160.0,
-      "contacts": 7761,
+      "cost": 83306.0,
+      "contacts": 10149,
       "pilots": 20,
-      "final_campaigns": 4,
+      "final_campaigns": 9,
       "violations": [],
-      "difference": 1801766.8200015277
+      "difference": 3989891.971130893
     },
     {
       "seed": 115,
-      "agent_net": 1127554.2442375936,
+      "agent_net": 3528689.631192511,
       "template_net": -143290.2236057858,
-      "cost": 91560.0,
-      "contacts": 4013,
+      "cost": 83186.0,
+      "contacts": 12904,
       "pilots": 20,
-      "final_campaigns": 3,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1270844.4678433794
+      "difference": 3671979.854798297
     },
     {
       "seed": 116,
-      "agent_net": 1244976.2507676654,
+      "agent_net": 3534912.4396453006,
       "template_net": -1908608.5867512561,
-      "cost": 98092.0,
-      "contacts": 5566,
+      "cost": 83786.0,
+      "contacts": 14690,
       "pilots": 20,
-      "final_campaigns": 3,
+      "final_campaigns": 9,
       "violations": [],
-      "difference": 3153584.8375189216
+      "difference": 5443521.026396557
     },
     {
       "seed": 117,
-      "agent_net": 1161751.452135574,
+      "agent_net": 3453861.505664753,
       "template_net": -344736.8818338406,
-      "cost": 95160.0,
-      "contacts": 9175,
+      "cost": 89838.0,
+      "contacts": 10457,
       "pilots": 20,
-      "final_campaigns": 4,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1506488.3339694147
+      "difference": 3798598.3874985934
     },
     {
       "seed": 118,
-      "agent_net": 1192547.9067728962,
+      "agent_net": 3510222.028448359,
       "template_net": -576203.7790105487,
-      "cost": 90760.0,
-      "contacts": 11582,
+      "cost": 83666.0,
+      "contacts": 14806,
       "pilots": 20,
-      "final_campaigns": 6,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1768751.685783445
+      "difference": 4086425.807458908
     },
     {
       "seed": 119,
-      "agent_net": 1239348.187694026,
+      "agent_net": 3565820.753077981,
       "template_net": -363827.4303513776,
-      "cost": 91560.0,
-      "contacts": 6032,
+      "cost": 89878.0,
+      "contacts": 12188,
       "pilots": 20,
-      "final_campaigns": 5,
+      "final_campaigns": 10,
       "violations": [],
-      "difference": 1603175.6180454036
+      "difference": 3929648.1834293585
     }
   ],
   "limitations": [
-    "Only local synthetic seeds were evaluated."
-  ]
+    "Only local synthetic seeds were evaluated.",
+    "These seeds informed branch selection; this is reproduction, not an untouched holdout."
+  ],
+  "evaluation_role": "integration reproduction; seeds previously inspected for branch selection"
 }

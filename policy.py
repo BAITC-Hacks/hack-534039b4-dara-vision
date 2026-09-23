@@ -19,12 +19,11 @@ def history_table(path=None):
         h["AVG_ARPU_PREV_3M"] = pd.to_numeric(h["AVG_ARPU_PREV_3M"], errors="coerce")
         h["AVG_ARPU_NEXT_3M"] = pd.to_numeric(h["AVG_ARPU_NEXT_3M"], errors="coerce")
         h = h[h["AVG_ARPU_PREV_3M"] >= 100].copy()
-        h["segment"] = pd.cut(h["AVG_ARPU_PREV_3M"], [-math.inf, 1000, 5000, math.inf], labels=["LOW", "MID", "HIGH"])
         h["ratio"] = ((h["AVG_ARPU_NEXT_3M"] - h["AVG_ARPU_PREV_3M"]) / h["AVG_ARPU_PREV_3M"]).clip(-1, 3)
         h = h[h["ratio"].map(math.isfinite)]
-        grouped = h.groupby(["tariff_plan_code_from", "tariff_plan_code_to", "segment"], observed=True)["ratio"].agg(["mean", "size"])
-        return {(str(a), str(b), str(s)): (float(row["mean"]), int(row["size"]))
-                for (a, b, s), row in grouped.iterrows()}, None
+        grouped = h.groupby(["tariff_plan_code_from", "tariff_plan_code_to"], observed=True)["ratio"].agg(["mean", "size"])
+        return {(str(a), str(b)): (float(row["mean"]), int(row["size"]))
+                for (a, b), row in grouped.iterrows()}, None
     except (OSError, ValueError, KeyError) as exc:
         return {}, f"history unavailable: {type(exc).__name__}"
 
@@ -39,12 +38,11 @@ def make_candidates(cells, tariffs, channels, history):
         current = cell.filters["current_tariff"]
         if current not in prices:
             raise ValueError("profile tariff missing in tariff dictionary")
-        segment = cell.filters["arpu_segment"]
         for target, target_price in sorted(prices.items()):
             if target == current:
                 continue
             delta = (float(target_price) - float(prices[current])) / median_price
-            hist_ratio, n_hist = history.get((current, target, segment), (0.0, 0))
+            hist_ratio, n_hist = history.get((current, target), (0.0, 0))
             # Historical migrations are observational. Shrink their order-only hint.
             hint = (n_hist / (n_hist + 80.0)) * max(-0.5, min(0.5, hist_ratio))
             heuristic = 0.08 * max(-1.0, min(1.0, delta)) + 0.18 * hint
@@ -77,12 +75,25 @@ def estimate_ratios(observations, candidates):
 
 def next_exploration(candidates, tested_keys, resources, reserved, can_pilot):
     tested_cells = {c.cell.key for c in candidates if c.key in tested_keys}
+    tested_targets = {c.target_tariff for c in candidates if c.key in tested_keys}
+    tested_channels = {c.channel for c in candidates if c.key in tested_keys}
+    eligible = []
     for c in candidates:
         if c.key in tested_keys or c.cell.key in tested_cells:
             continue
         n = min(100, c.cell.audience_count)
         if can_pilot(c, n, resources, reserved):
-            return c, n
+            eligible.append((c, n))
+    if len(tested_keys) >= 6:
+        alternative = [item for item in eligible if item[0].channel not in tested_channels]
+        if alternative:
+            return alternative[0]
+    if len(tested_keys) >= 3:
+        alternative = [item for item in eligible if item[0].target_tariff not in tested_targets]
+        if alternative:
+            return alternative[0]
+    if eligible:
+        return eligible[0]
     for c in candidates:
         if c.key not in tested_keys:
             n = min(100, c.cell.audience_count)

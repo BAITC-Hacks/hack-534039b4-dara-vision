@@ -37,6 +37,8 @@ Frozen policy commit `6830b8f26acae2a870f0ef8bc8157a2599945f85` was tested once 
 3. Run `python make_submission.py` twice and compare the two CSV hashes.
 4. Open `reports/reserved.md` for paired quality and constraint results.
 
+The committed `submission.csv` SHA-256 is `82894553332e20afea27c4cba0554a04ab457681968393edbc4622cf8bf68bbc`. The generator produces three final campaigns; the evaluator also counts pilot contacts when reporting campaign activity.
+
 ## How the agent works
 
 `planning.py` partitions the public profile by current tariff and ARPU segment, splitting oversized cells by data and call segments. It validates filters, final overlap and combined pilot/final resources. `policy.py` uses a weak ordering hint from migration history, explores feasible target/channel pairs, and updates estimates after each pilot. `agent.py` reserves a feasible tested campaign before further pilots and validates the final plan. If every estimated score is negative, it returns the feasible tested option with the smallest estimated loss and records emergency mode in the trace. The trace contains no customer IDs.

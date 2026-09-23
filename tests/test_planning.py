@@ -65,3 +65,29 @@ def test_numeric_text_arpu_matches_numeric_without_mutation():
     text = numeric.assign(predicted_arpu="100.0")
     assert build_cells(text) == build_cells(numeric)
     assert text["predicted_arpu"].eq("100.0").all()
+
+
+@pytest.mark.parametrize("column", ["arpu_segment", "data_segment", "call_segment"])
+@pytest.mark.parametrize("value", [1, 1.5])
+def test_numeric_segment_categories_rejected(column, value):
+    df = profile().assign(**{column: pd.Categorical([value] * 20)})
+    with pytest.raises(ValueError, match=f"invalid {column}"):
+        build_cells(df)
+
+
+def test_oversized_cell_splits_by_call_with_exact_disjoint_filters():
+    df = profile(6000)
+    df.loc[3000:, "call_segment"] = "LOW"
+    cells = build_cells(df)
+    assert len(cells) == 2
+    masks = [filter_mask(df, cell.filters) for cell in cells]
+    assert all(cell.audience_count == int(mask.sum()) == 3000
+               for cell, mask in zip(cells, masks))
+    assert not (masks[0] & masks[1]).any()
+    assert (masks[0] | masks[1]).all()
+    assert all("filter_data_segment" in cell.filters and "filter_call_segment" in cell.filters
+               for cell in cells)
+
+
+def test_unsplittable_oversized_cell_is_excluded():
+    assert build_cells(profile(5001)) == []

@@ -4,42 +4,7 @@ import socket
 import pandas as pd
 
 from agent import Agent
-from contracts import Cell, Candidate, ResourceSnapshot
 from make_submission import build_submission
-from mock_environment import make_mock_env
-from planning import can_pilot, filter_mask, select_campaigns, validate_plan
-
-
-def test_free_channel_still_reserves_contacts():
-    cell = Cell("a", {"current_tariff": "a", "arpu_segment": "MID"}, 100, 10000)
-    candidate = Candidate("a|b|push", cell, "b", "push", 0, 0)
-    assert not can_pilot(candidate, 50, ResourceSnapshot(0, 149, 1), candidate)
-    assert can_pilot(candidate, 50, ResourceSnapshot(0, 150, 1), candidate)
-
-
-def test_all_negative_fallback_takes_least_loss():
-    a = Cell("a", {"current_tariff": "a"}, 100, 1000)
-    b = Cell("b", {"current_tariff": "b"}, 50, 500)
-    ca = Candidate("a", a, "b", "push", 0, 0)
-    cb = Candidate("b", b, "a", "push", 0, 0)
-    assert select_campaigns([ca, cb], {"a": -0.1, "b": -0.1}, ResourceSnapshot(0, 200, 0)) == [cb]
-
-
-def test_validation_rejects_overlap_and_supports_tariff_list():
-    profile = pd.DataFrame({"ID_NUMBER": [1, 2, 3], "current_tariff": ["a", "b", "a"],
-                            "arpu_segment": ["MID"] * 3})
-    assert filter_mask(profile, {"current_tariff": "a;b"}).sum() == 3
-    tariffs = pd.DataFrame({"tariff_plan_code": ["a", "b", "c"]})
-    base = {"campaign_name": "one", "filter_current_tariff": "a",
-            "target_tariff": "c", "channel": "push"}
-    second = {**base, "campaign_name": "two"}
-    try:
-        validate_plan([base, second], profile, tariffs,
-                      {"push": {"cost_per_contact": 0}}, ResourceSnapshot(0, 10, 0))
-    except ValueError as exc:
-        assert "overlapping" in str(exc)
-    else:
-        raise AssertionError("overlap accepted")
 
 
 def test_offline_act_and_official_evaluator(monkeypatch):

@@ -50,8 +50,8 @@ def violations(result, campaigns, stdout):
         errors.append("evaluator dropped final campaign")
     if result["total_contacts"] > 15000 or result["total_cost"] > 100000:
         errors.append("combined resource cap")
-    if result.get("n_pilots", 0) > 20:
-        errors.append("pilot cap")
+    if not 1 <= result.get("n_pilots", 0) <= 20:
+        errors.append("pilot count")
     for row in result["campaigns_detail"]:
         if any(row.get(k) for k in ("capped_at_campaign_limit", "capped_at_reach_budget", "capped_at_money_budget")):
             errors.append(f"scorer capped {row['name']}")

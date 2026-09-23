@@ -1,10 +1,8 @@
-"""Shared, serializable records for the offline agent."""
 from dataclasses import dataclass
 
 
-FILTER_FIELDS = ("current_tariff", "arpu_segment", "data_segment", "call_segment")
-CAMPAIGN_FIELDS = ("campaign_name", "filter_arpu_segment", "filter_data_segment",
-                   "filter_call_segment", "filter_current_tariff", "target_tariff", "channel")
+FILTER_COLUMNS = ("filter_arpu_segment", "filter_data_segment", "filter_call_segment", "filter_current_tariff")
+CAMPAIGN_COLUMNS = ("campaign_name", *FILTER_COLUMNS, "target_tariff", "channel")
 
 
 @dataclass(frozen=True)

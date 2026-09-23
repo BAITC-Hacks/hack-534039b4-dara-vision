@@ -1,115 +1,129 @@
-"""Offline tariff-campaign agent. Only public environment fields are read."""
+"""Offline tariff campaign agent. Only public environment data and pilot feedback are read."""
+
 import math
 
 from contracts import PilotObservation
-from planning import (build_cells, campaign_dict, can_pilot, select_campaigns,
-                      snapshot, validate_plan)
-from policy import (estimate_ratios, history_table, make_candidates,
-                    next_exploration, next_repeat)
+from planning import build_cells, can_pilot, campaign_score, select_campaigns, snapshot, validate_plan
+from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate
 
 
 class Agent:
     def __init__(self):
         self.trace = []
 
-    def _event(self, event, **details):
-        self.trace.append({"schema_version": 1, "event": event,
-                           "step": len(self.trace), **details})
+    def _event(self, name, **fields):
+        self.trace.append({"schema_version": 1, "event": name, "step": len(self.trace), **fields})
 
     def act(self, env):
         self.trace = []
-        cells = build_cells(env.customer_profile)
+        profile, tariffs, channels = env.customer_profile, env.tariffs, env.channels
+        if "tariff_plan_code" not in tariffs or "price_tariff" not in tariffs:
+            raise ValueError("invalid tariff table")
+        tariff_codes = set(tariffs["tariff_plan_code"].dropna())
+        if not tariff_codes or tariffs["tariff_plan_code"].duplicated().any():
+            raise ValueError("tariff codes must be unique")
+        if not profile["current_tariff"].dropna().isin(tariff_codes).all():
+            raise ValueError("unknown current tariff")
+        if not tariffs["price_tariff"].map(lambda x: isinstance(x, (int, float)) and math.isfinite(x) and x >= 0).all():
+            raise ValueError("invalid tariff prices")
+        cells = build_cells(profile)
         if not cells:
-            self._event("failed", reason="no representable cells")
             raise ValueError("no representable cells")
-        if "tariff_plan_code" not in env.tariffs or "price_tariff" not in env.tariffs:
-            raise ValueError("invalid tariff dictionary")
-        if env.tariffs["tariff_plan_code"].isna().any() or env.tariffs["tariff_plan_code"].duplicated().any():
-            raise ValueError("invalid tariff codes")
-        start = snapshot(env)
-        self._event("input_validated", cells=len(cells), tariffs=len(env.tariffs),
-                    channels=sorted(env.channels), resources=start.__dict__)
-        history, history_error = history_table()
-        if history_error:
-            self._event("history_unavailable", reason=history_error)
-        candidates = make_candidates(cells, env.tariffs, env.channels, history)
-        observations = []
-        tested = set()
-        reserved = None
+        self._event("input_validated", profile_size=len(profile), cells=len(cells))
+        history, reason = historical_hints()
+        if reason:
+            self._event("history_unavailable", reason=reason)
+        all_candidates = make_candidates(cells, tariffs, channels, history)
+        order = exploratory_order(all_candidates)
+        if not order:
+            raise ValueError("no candidate tariffs or channels")
+
+        observations, tried = [], set()
+        tested = {}
+        reserve = None
         attempts = 0
+        initial_budget = snapshot(env).remaining_budget
+        pilot_spend = 0.0
         while attempts < 20:
             before = snapshot(env)
-            if len(tested) < 12:
-                next_item = next_exploration(candidates, tested, before, reserved, can_pilot)
-            else:
-                next_item = next_repeat(candidates, observations, before, reserved, can_pilot)
-            if next_item is None:
+            if before.pilots_left <= 0:
                 break
-            candidate, n = next_item
+
+            def pilot_size(candidate):
+                return min(200 if candidate.cost_per_contact <= 22 else 50,
+                           candidate.cell.audience_count)
+
+            def eligible(candidate):
+                n_requested = pilot_size(candidate)
+                return (pilot_spend + n_requested * candidate.cost_per_contact <= initial_budget * 0.25 + 1e-7
+                        and can_pilot(candidate, n_requested, before, reserve))
+
+            candidate = next_candidate(order, observations, tried, before, eligible)
+            if candidate is None:
+                break
+            n = pilot_size(candidate)
             attempts += 1
-            self._event("pilot_requested", candidate_key=candidate.key,
-                        filters=candidate.cell.filters, target=candidate.target_tariff,
-                        channel=candidate.channel, requested_n=n, resources_before=before.__dict__)
-            args = {"target_tariff": candidate.target_tariff, "channel": candidate.channel,
-                    "n_customers": n,
-                    **{"filter_" + k: v for k, v in candidate.cell.filters.items()}}
+            tried.add(candidate.key)
+            self._event("pilot_requested", candidate_key=candidate.key, filters=candidate.cell.filters,
+                        target=candidate.target_tariff, channel=candidate.channel, requested_n=n,
+                        resources_before=before.__dict__)
             try:
-                result = env.run_pilot(**args)
+                result = env.run_pilot(target_tariff=candidate.target_tariff, channel=candidate.channel,
+                                       n_customers=n, **candidate.cell.filters)
             except Exception as exc:
                 after = snapshot(env)
-                self._event("pilot_failed", candidate_key=candidate.key,
-                            reason=type(exc).__name__, resources_after=after.__dict__)
-                if after != before:
-                    break
-                tested.add(candidate.key)
-                continue
+                self._event("pilot_failed", candidate_key=candidate.key, reason=type(exc).__name__,
+                            resources_after=after.__dict__)
+                # No automatic retry: a failed call may have consumed resources.
+                break
             after = snapshot(env)
             try:
-                actual = int(result["n_customers"])
+                reported_n = result["n_customers"]
+                actual = int(reported_n)
                 cost = float(result["cost"])
                 ratio = float(result["observed_lift_ratio"])
-                valid = (10 <= actual <= n and math.isfinite(cost) and cost >= 0 and
-                         math.isfinite(ratio) and
-                         abs((before.remaining_contacts - after.remaining_contacts) - actual) == 0 and
-                         abs((before.remaining_budget - after.remaining_budget) - cost) < 1e-6 and
-                         before.pilots_left - after.pilots_left == 1 and
-                         abs(cost - actual * candidate.cost_per_contact) < 1e-6)
-            except (KeyError, TypeError, ValueError, OverflowError):
-                valid = False
-            if not valid:
-                self._event("pilot_failed", candidate_key=candidate.key,
-                            reason="invalid feedback or inconsistent counters",
+                if (isinstance(reported_n, bool) or reported_n != actual or actual != n
+                        or not math.isfinite(cost) or not math.isfinite(ratio)
+                        or abs(cost - actual * candidate.cost_per_contact) > 1e-6
+                        or before.remaining_contacts - after.remaining_contacts != actual
+                        or abs(before.remaining_budget - after.remaining_budget - cost) > 1e-5
+                        or before.pilots_left - after.pilots_left != 1):
+                    raise ValueError("inconsistent pilot feedback or resource debit")
+            except (KeyError, TypeError, ValueError, OverflowError) as exc:
+                self._event("pilot_failed", candidate_key=candidate.key, reason=str(exc),
                             resources_after=after.__dict__)
                 break
             observations.append(PilotObservation(candidate.key, actual, cost, ratio))
-            tested.add(candidate.key)
-            self._event("pilot_observed", candidate_key=candidate.key, actual_n=actual,
-                        ratio=ratio, cost=cost, resources_after=after.__dict__)
-            estimates = estimate_ratios(observations, candidates)
-            chosen = select_campaigns([c for c in candidates if c.key in tested], estimates, after)
-            if chosen:
-                reserved = chosen[0]
-            self._event("selection_updated", selected_keys=[c.key for c in chosen],
-                        reserve=reserved.key if reserved else None,
-                        estimated_scores={c.key: round(estimates[c.key] * c.cell.arpu_sum -
-                                                       c.cell.audience_count * c.cost_per_contact, 3)
-                                          for c in chosen})
-            if reserved is None:
+            pilot_spend += cost
+            tested[candidate.key] = candidate
+            self._event("pilot_observed", candidate_key=candidate.key, actual_n=actual, cost=cost,
+                        ratio=ratio, resources_after=after.__dict__)
+            ratios = adjusted_ratios(observations)
+            feasible = [c for c in tested.values() if c.cell.audience_count <= after.remaining_contacts and
+                        c.cell.audience_count * c.cost_per_contact <= after.remaining_budget + 1e-7]
+            if feasible:
+                reserve = max(feasible, key=lambda c: (campaign_score(c, ratios[c.key]), c.key))
+            self._event("selection_updated", tested=len(tested), reserve=reserve.key if reserve else None)
+            if reserve is None:
                 break
-        if not observations:
+
+        if not tested:
             self._event("failed", reason="no successful pilot")
             raise RuntimeError("no successful pilot")
-        remaining = snapshot(env)
-        estimates = estimate_ratios(observations, candidates)
-        selected = select_campaigns([c for c in candidates if c.key in tested], estimates, remaining)
+        resources = snapshot(env)
+        ratios = adjusted_ratios(observations)
+        selected = select_campaigns(list(tested.values()), ratios, resources)
         if not selected:
             self._event("failed", reason="no feasible tested campaign")
             raise RuntimeError("no feasible tested campaign")
-        if all(estimates[c.key] * c.cell.arpu_sum - c.cell.audience_count * c.cost_per_contact <= 0
-               for c in selected):
-            self._event("emergency", reason="no estimated profitable plan")
-        campaigns = [campaign_dict(c, i + 1) for i, c in enumerate(selected)]
-        validate_plan(campaigns, env.customer_profile, env.tariffs, env.channels, remaining)
-        self._event("final_selected", candidate_keys=[c.key for c in selected],
-                    campaign_count=len(campaigns), resources=remaining.__dict__)
+        validate_plan(selected, profile, tariffs, channels, resources)
+        if all(campaign_score(c, ratios[c.key]) <= 0 for c in selected):
+            self._event("emergency", reason="no estimated profitable campaign")
+        campaigns = []
+        for index, candidate in enumerate(selected, 1):
+            campaigns.append({"campaign_name": f"campaign_{index:02d}", **candidate.cell.filters,
+                              "target_tariff": candidate.target_tariff, "channel": candidate.channel})
+            self._event("final_selected", candidate_key=candidate.key,
+                        estimated_score=campaign_score(candidate, ratios[candidate.key]),
+                        audience_count=candidate.cell.audience_count)
         return campaigns

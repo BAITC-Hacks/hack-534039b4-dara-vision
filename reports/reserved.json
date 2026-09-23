@@ -1,0 +1,212 @@
+{
+  "status": "PASS",
+  "policy_commit": "82ec7b32c0516dfb41107c56826b207e586c0667",
+  "seeds": [
+    {
+      "seed": 100,
+      "net": 3520292.371367489,
+      "baseline_net": -1248998.0135772715,
+      "difference": 4769290.38494476,
+      "cost": 83786.0,
+      "contacts": 11967,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 101,
+      "net": 3342638.5811133278,
+      "baseline_net": -73999.17177049488,
+      "difference": 3416637.7528838227,
+      "cost": 95910.0,
+      "contacts": 13622,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 102,
+      "net": 2877447.096436659,
+      "baseline_net": -1264594.9092211844,
+      "difference": 4142042.0056578433,
+      "cost": 76906.0,
+      "contacts": 6805,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 103,
+      "net": 3139603.021149371,
+      "baseline_net": -404146.61295603286,
+      "difference": 3543749.634105404,
+      "cost": 76626.0,
+      "contacts": 11264,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 104,
+      "net": 3241386.9021586757,
+      "baseline_net": -383229.97806788434,
+      "difference": 3624616.88022656,
+      "cost": 76906.0,
+      "contacts": 14973,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 105,
+      "net": 3340522.600051156,
+      "baseline_net": -1249171.5615383198,
+      "difference": 4589694.161589475,
+      "cost": 83306.0,
+      "contacts": 9123,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 106,
+      "net": 3158708.5376458764,
+      "baseline_net": -643160.9784381064,
+      "difference": 3801869.516083983,
+      "cost": 76586.0,
+      "contacts": 13485,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 107,
+      "net": 3290901.569092711,
+      "baseline_net": -102423.30152807856,
+      "difference": 3393324.8706207895,
+      "cost": 65070.0,
+      "contacts": 10505,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 108,
+      "net": 3560449.2082742956,
+      "baseline_net": -1232413.2725694356,
+      "difference": 4792862.480843731,
+      "cost": 83186.0,
+      "contacts": 14985,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 109,
+      "net": 3604283.366673064,
+      "baseline_net": -638054.0368327426,
+      "difference": 4242337.403505807,
+      "cost": 90198.0,
+      "contacts": 14942,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 110,
+      "net": 3453836.8472839473,
+      "baseline_net": -1241288.9921806762,
+      "difference": 4695125.8394646235,
+      "cost": 89718.0,
+      "contacts": 10726,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 111,
+      "net": 3479604.3414312303,
+      "baseline_net": -110374.3334219319,
+      "difference": 3589978.6748531624,
+      "cost": 83306.0,
+      "contacts": 14875,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 112,
+      "net": 3249227.289480587,
+      "baseline_net": -355017.5604710174,
+      "difference": 3604244.8499516044,
+      "cost": 65390.0,
+      "contacts": 12833,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 113,
+      "net": 3164710.2261474226,
+      "baseline_net": -609670.348029474,
+      "difference": 3774380.5741768964,
+      "cost": 76746.0,
+      "contacts": 13525,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 114,
+      "net": 3388635.5590648474,
+      "baseline_net": -601256.4120660458,
+      "difference": 3989891.971130893,
+      "cost": 83306.0,
+      "contacts": 10149,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 115,
+      "net": 3528689.631192511,
+      "baseline_net": -143290.2236057858,
+      "difference": 3671979.854798297,
+      "cost": 83186.0,
+      "contacts": 12904,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 116,
+      "net": 3534912.4396453006,
+      "baseline_net": -1908608.5867512561,
+      "difference": 5443521.026396557,
+      "cost": 83786.0,
+      "contacts": 14690,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 117,
+      "net": 3453861.505664753,
+      "baseline_net": -344736.8818338406,
+      "difference": 3798598.3874985934,
+      "cost": 89838.0,
+      "contacts": 10457,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 118,
+      "net": 3510222.028448359,
+      "baseline_net": -576203.7790105487,
+      "difference": 4086425.807458908,
+      "cost": 83666.0,
+      "contacts": 14806,
+      "status": "PASS",
+      "pilots": 20
+    },
+    {
+      "seed": 119,
+      "net": 3565820.753077981,
+      "baseline_net": -363827.4303513776,
+      "difference": 3929648.1834293585,
+      "cost": 89878.0,
+      "contacts": 12188,
+      "status": "PASS",
+      "pilots": 20
+    }
+  ],
+  "median_net": 3421236.2031743973,
+  "median_difference": 3865758.8497566707,
+  "minimum_net": 2877447.096436659,
+  "negative_share": 0.0,
+  "violations": 0,
+  "trace": "[\n  {\n    \"schema_version\": 1,\n    \"event\": \"input_validated\",\n    \"step\": 0,\n    \"profile_size\": 23441,\n    \"cells\": 54\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"pilot_requested\",\n    \"step\": 1,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\",\n    \"filters\": {\n      \"filter_current_tariff\": \"tariff_13\",\n      \"filter_arpu_segment\": \"MID\"\n    },\n    \"target\": \"tariff_8\",\n    \"channel\": \"digital_ads\",\n    \"requested_n\": 200,\n    \"resources_before\": {\n      \"remaining_budget\": 100000.0,\n      \"remaining_contacts\": 15000,\n      \"pilots_left\": 20\n    }\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"pilot_observed\",\n    \"step\": 2,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\",\n    \"actual_n\": 200,\n    \"cost\": 4400.0,\n    \"ratio\": 0.23441667895929838,\n    \"resources_after\": {\n      \"remaining_budget\": 95600.0,\n      \"remaining_contacts\": 14800,\n      \"pilots_left\": 19\n    }\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"selection_updated\",\n    \"step\": 3,\n    \"tested\": 1,\n    \"reserve\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\"\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"pilot_requested\",\n    \"step\": 4,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\",\n    \"filters\": {\n      \"filter_current_tariff\": \"tariff_13\",\n      \"filter_arpu_segment\": \"MID\"\n    },\n    \"target\": \"tariff_8\",\n    \"channel\": \"digital_ads\",\n    \"requested_n\": 200,\n    \"resources_before\": {\n      \"remaining_budget\": 95600.0,\n      \"remaining_contacts\": 14800,\n      \"pilots_left\": 19\n    }\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"pilot_observed\",\n    \"step\": 5,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\",\n    \"actual_n\": 200,\n    \"cost\": 4400.0,\n    \"ratio\": 0.2623362957053652,\n    \"resources_after\": {\n      \"remaining_budget\": 91200.0,\n      \"remaining_contacts\": 14600,\n      \"pilots_left\": 18\n    }\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"selection_updated\",\n    \"step\": 6,\n    \"tested\": 1,\n    \"reserve\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_13|target=tariff_8|channel=digital_ads\"\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"pilot_requested\",\n    \"step\": 7,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_4|target=tariff_8|channel=digital_ads\",\n    \"filters\": {\n      \"filter_current_tariff\": \"tariff_4\",\n      \"filter_arpu_segment\": \"MID\"\n    },\n    \"target\": \"tariff_8\",\n    \"channel\": \"digital_ads\",\n    \"requested_n\": 200,\n    \"resources_before\": {\n      \"remaining_budget\": 91200.0,\n      \"remaining_contacts\": 14600,\n      \"pilots_left\": 18\n    }\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"final_selected\",\n    \"step\": 66,\n    \"candidate_key\": \"filter_arpu_segment=HIGH|filter_current_tariff=tariff_4|target=tariff_14|channel=push\",\n    \"estimated_score\": 83060.88029619293,\n    \"audience_count\": 2108\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"final_selected\",\n    \"step\": 67,\n    \"candidate_key\": \"filter_arpu_segment=MID|filter_current_tariff=tariff_15|target=tariff_20|channel=sms\",\n    \"estimated_score\": 33207.59936781738,\n    \"audience_count\": 80\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"final_selected\",\n    \"step\": 68,\n    \"candidate_key\": \"filter_arpu_segment=LOW|filter_current_tariff=tariff_10|target=tariff_21|channel=push\",\n    \"estimated_score\": 13147.123725046109,\n    \"audience_count\": 370\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"final_selected\",\n    \"step\": 69,\n    \"candidate_key\": \"filter_arpu_segment=LOW|filter_current_tariff=tariff_1|target=tariff_4|channel=sms\",\n    \"estimated_score\": 7011.5222541235025,\n    \"audience_count\": 40\n  },\n  {\n    \"schema_version\": 1,\n    \"event\": \"final_selected\",\n    \"step\": 70,\n    \"candidate_key\": \"filter_arpu_segment=LOW|filter_current_tariff=tariff_6|target=tariff_13|channel=sms\",\n    \"estimated_score\": 3045.858769718928,\n    \"audience_count\": 30\n  }\n]"
+}

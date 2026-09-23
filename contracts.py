@@ -21,6 +21,7 @@ class Candidate:
     channel: str
     cost_per_contact: float
     prior_score: float
+    multiplier: float = 1.0
 
 
 @dataclass(frozen=True)

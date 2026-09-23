@@ -4,7 +4,7 @@ import math
 
 from contracts import PilotObservation
 from planning import build_cells, can_pilot, campaign_score, select_campaigns, snapshot, validate_plan
-from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate
+from policy import adjusted_ratios, exploratory_order, historical_hints, make_candidates, next_candidate, measured_candidates
 
 
 class Agent:
@@ -111,8 +111,8 @@ class Agent:
             self._event("failed", reason="no successful pilot")
             raise RuntimeError("no successful pilot")
         resources = snapshot(env)
-        ratios = adjusted_ratios(observations)
-        selected = select_campaigns(list(tested.values()), ratios, resources)
+        measured, ratios = measured_candidates(all_candidates, observations)
+        selected = select_campaigns(measured, ratios, resources)
         if not selected:
             self._event("failed", reason="no feasible tested campaign")
             raise RuntimeError("no feasible tested campaign")

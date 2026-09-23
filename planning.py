@@ -90,23 +90,36 @@ def campaign_score(candidate, ratio):
 
 def select_campaigns(candidates, estimated_ratios, resources):
     ranked = [(campaign_score(c, estimated_ratios[c.key]), c) for c in candidates if c.key in estimated_ratios]
-    positives = sorted((item for item in ranked if item[0] > 0), key=lambda item: (-item[0], item[1].key))
-    selected, used_cells = [], set()
-    budget, contacts = resources.remaining_budget, resources.remaining_contacts
-    for score, candidate in positives:
-        if len(selected) >= 10:
-            break
-        if candidate.cell.key in used_cells or candidate.cell.audience_count > contacts:
-            continue
-        cost = candidate.cell.audience_count * candidate.cost_per_contact
-        if cost > budget + 1e-7:
-            continue
-        selected.append(candidate)
-        used_cells.add(candidate.cell.key)
-        budget -= cost
-        contacts -= candidate.cell.audience_count
+    # Multiple-choice two-resource knapsack: at most one action per disjoint
+    # cell. There are at most 20 measured actions, so branch-and-bound is small.
+    groups = {}
+    for score, candidate in ranked:
+        if score > 0:
+            groups.setdefault(candidate.cell.key, []).append((score, candidate))
+    groups = [sorted(group, key=lambda item: (-item[0], item[1].key))
+              for _, group in sorted(groups.items())]
+    groups.sort(key=lambda group: (-group[0][0], group[0][1].key))
+    suffix = [0.] * (len(groups) + 1)
+    for index in range(len(groups) - 1, -1, -1):
+        suffix[index] = suffix[index + 1] + groups[index][0][0]
+    best_score, selected = 0., []
+
+    def search(index, budget, contacts, score, chosen):
+        nonlocal best_score, selected
+        if score > best_score:
+            best_score, selected = score, list(chosen)
+        if index == len(groups) or len(chosen) == 10 or score + suffix[index] <= best_score + 1e-7:
+            return
+        for gain, candidate in groups[index]:
+            cost = candidate.cell.audience_count * candidate.cost_per_contact
+            if cost <= budget + 1e-7 and candidate.cell.audience_count <= contacts:
+                search(index + 1, budget - cost, contacts - candidate.cell.audience_count,
+                       score + gain, chosen + [candidate])
+        search(index + 1, budget, contacts, score, chosen)
+
+    search(0, resources.remaining_budget, resources.remaining_contacts, 0., [])
     if selected:
-        return selected
+        return sorted(selected, key=lambda c: (-campaign_score(c, estimated_ratios[c.key]), c.key))
     feasible = [(score, c) for score, c in ranked if c.cell.audience_count <= resources.remaining_contacts
                 and c.cell.audience_count * c.cost_per_contact <= resources.remaining_budget + 1e-7]
     return [min(feasible, key=lambda item: (-item[0], item[1].cell.audience_count, item[1].key))[1]] if feasible else []

@@ -1,0 +1,384 @@
+{
+  "baseline": "b70e366",
+  "model_seed": 20260923,
+  "rows": [
+    {
+      "scenario": "mock",
+      "seed": 0,
+      "baseline": {
+        "net": 3441687.308697588,
+        "cost": 90318.0,
+        "contacts": 10175,
+        "pilots": 20,
+        "final_campaigns": 10,
+        "violations": []
+      },
+      "candidate": {
+        "net": 2883153.450244388,
+        "cost": 82732.0,
+        "contacts": 6556,
+        "pilots": 20,
+        "final_campaigns": 3,
+        "violations": []
+      },
+      "delta": -558533.8584531997
+    },
+    {
+      "scenario": "mock",
+      "seed": 1,
+      "baseline": {
+        "net": 3424106.0232850607,
+        "cost": 83346.0,
+        "contacts": 11311,
+        "pilots": 20,
+        "final_campaigns": 10,
+        "violations": []
+      },
+      "candidate": {
+        "net": 3697396.94759934,
+        "cost": 99730.0,
+        "contacts": 13870,
+        "pilots": 20,
+        "final_campaigns": 8,
+        "violations": []
+      },
+      "delta": 273290.9243142796
+    },
+    {
+      "scenario": "mock",
+      "seed": 2,
+      "baseline": {
+        "net": 3555753.582538977,
+        "cost": 83466.0,
+        "contacts": 14840,
+        "pilots": 20,
+        "final_campaigns": 9,
+        "violations": []
+      },
+      "candidate": {
+        "net": 3524929.169369664,
+        "cost": 99258.0,
+        "contacts": 11222,
+        "pilots": 20,
+        "final_campaigns": 7,
+        "violations": []
+      },
+      "delta": -30824.413169312757
+    },
+    {
+      "scenario": "negative",
+      "seed": 0,
+      "baseline": {
+        "net": -695684.9272535538,
+        "cost": 25120.0,
+        "contacts": 2910,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "candidate": {
+        "net": -1340453.5352351377,
+        "cost": 23200.0,
+        "contacts": 4307,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": -644768.6079815839
+    },
+    {
+      "scenario": "negative",
+      "seed": 1,
+      "baseline": {
+        "net": -770535.6498680235,
+        "cost": 25120.0,
+        "contacts": 3060,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "candidate": {
+        "net": -1384384.398678706,
+        "cost": 23200.0,
+        "contacts": 4307,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": -613848.7488106826
+    },
+    {
+      "scenario": "negative",
+      "seed": 2,
+      "baseline": {
+        "net": -1154513.2970941593,
+        "cost": 52154.0,
+        "contacts": 4777,
+        "pilots": 20,
+        "final_campaigns": 3,
+        "violations": []
+      },
+      "candidate": {
+        "net": -1211984.452010172,
+        "cost": 22520.0,
+        "contacts": 4043,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": -57471.15491601266
+    },
+    {
+      "scenario": "null",
+      "seed": 0,
+      "baseline": {
+        "net": -31356.0,
+        "cost": 31356.0,
+        "contacts": 5555,
+        "pilots": 20,
+        "final_campaigns": 6,
+        "violations": []
+      },
+      "candidate": {
+        "net": -23200.0,
+        "cost": 23200.0,
+        "contacts": 4307,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": 8156.0
+    },
+    {
+      "scenario": "null",
+      "seed": 1,
+      "baseline": {
+        "net": -83186.0,
+        "cost": 83186.0,
+        "contacts": 11271,
+        "pilots": 20,
+        "final_campaigns": 9,
+        "violations": []
+      },
+      "candidate": {
+        "net": -69576.0,
+        "cost": 69576.0,
+        "contacts": 5958,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": 13610.0
+    },
+    {
+      "scenario": "null",
+      "seed": 2,
+      "baseline": {
+        "net": -63562.0,
+        "cost": 63562.0,
+        "contacts": 12825,
+        "pilots": 20,
+        "final_campaigns": 9,
+        "violations": []
+      },
+      "candidate": {
+        "net": -79264.0,
+        "cost": 79264.0,
+        "contacts": 10126,
+        "pilots": 20,
+        "final_campaigns": 2,
+        "violations": []
+      },
+      "delta": -15702.0
+    },
+    {
+      "scenario": "dense_saturated",
+      "seed": 0,
+      "baseline": {
+        "net": 11276426.244806353,
+        "cost": 83438.0,
+        "contacts": 14973,
+        "pilots": 20,
+        "final_campaigns": 10,
+        "violations": []
+      },
+      "candidate": {
+        "net": 14861056.681544125,
+        "cost": 99906.0,
+        "contacts": 14908,
+        "pilots": 20,
+        "final_campaigns": 5,
+        "violations": []
+      },
+      "delta": 3584630.436737772
+    },
+    {
+      "scenario": "dense_saturated",
+      "seed": 1,
+      "baseline": {
+        "net": 11493658.108274514,
+        "cost": 90114.0,
+        "contacts": 14994,
+        "pilots": 20,
+        "final_campaigns": 8,
+        "violations": []
+      },
+      "candidate": {
+        "net": 14562542.77276621,
+        "cost": 97722.0,
+        "contacts": 14952,
+        "pilots": 20,
+        "final_campaigns": 6,
+        "violations": []
+      },
+      "delta": 3068884.6644916963
+    },
+    {
+      "scenario": "dense_saturated",
+      "seed": 2,
+      "baseline": {
+        "net": 11503826.254776113,
+        "cost": 90434.0,
+        "contacts": 14994,
+        "pilots": 20,
+        "final_campaigns": 8,
+        "violations": []
+      },
+      "candidate": {
+        "net": 13820595.867836583,
+        "cost": 99838.0,
+        "contacts": 14891,
+        "pilots": 20,
+        "final_campaigns": 9,
+        "violations": []
+      },
+      "delta": 2316769.6130604707
+    },
+    {
+      "scenario": "reversed_price",
+      "seed": 0,
+      "baseline": {
+        "net": -174217.59364893456,
+        "cost": 26948.0,
+        "contacts": 4775,
+        "pilots": 20,
+        "final_campaigns": 5,
+        "violations": []
+      },
+      "candidate": {
+        "net": 11689457.842753159,
+        "cost": 70624.0,
+        "contacts": 12016,
+        "pilots": 20,
+        "final_campaigns": 4,
+        "violations": []
+      },
+      "delta": 11863675.436402094
+    },
+    {
+      "scenario": "reversed_price",
+      "seed": 1,
+      "baseline": {
+        "net": -889592.339055009,
+        "cost": 25120.0,
+        "contacts": 3431,
+        "pilots": 20,
+        "final_campaigns": 2,
+        "violations": []
+      },
+      "candidate": {
+        "net": 11694881.144243281,
+        "cost": 70744.0,
+        "contacts": 12046,
+        "pilots": 20,
+        "final_campaigns": 5,
+        "violations": []
+      },
+      "delta": 12584473.48329829
+    },
+    {
+      "scenario": "reversed_price",
+      "seed": 2,
+      "baseline": {
+        "net": -339630.35612897587,
+        "cost": 27108.0,
+        "contacts": 5045,
+        "pilots": 20,
+        "final_campaigns": 7,
+        "violations": []
+      },
+      "candidate": {
+        "net": 11800181.903934138,
+        "cost": 78464.0,
+        "contacts": 12036,
+        "pilots": 20,
+        "final_campaigns": 5,
+        "violations": []
+      },
+      "delta": 12139812.260063114
+    },
+    {
+      "scenario": "sparse_independent",
+      "seed": 0,
+      "baseline": {
+        "net": 2145566.712574969,
+        "cost": 29088.0,
+        "contacts": 10661,
+        "pilots": 20,
+        "final_campaigns": 3,
+        "violations": []
+      },
+      "candidate": {
+        "net": 5009718.086899933,
+        "cost": 59126.0,
+        "contacts": 5483,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": 2864151.3743249644
+    },
+    {
+      "scenario": "sparse_independent",
+      "seed": 1,
+      "baseline": {
+        "net": 2971562.8939476507,
+        "cost": 25160.0,
+        "contacts": 5354,
+        "pilots": 20,
+        "final_campaigns": 3,
+        "violations": []
+      },
+      "candidate": {
+        "net": 5055111.0251943,
+        "cost": 59126.0,
+        "contacts": 5483,
+        "pilots": 20,
+        "final_campaigns": 1,
+        "violations": []
+      },
+      "delta": 2083548.1312466497
+    },
+    {
+      "scenario": "sparse_independent",
+      "seed": 2,
+      "baseline": {
+        "net": 1687871.4659548597,
+        "cost": 63562.0,
+        "contacts": 14207,
+        "pilots": 20,
+        "final_campaigns": 9,
+        "violations": []
+      },
+      "candidate": {
+        "net": 4630977.561772693,
+        "cost": 93000.0,
+        "contacts": 8430,
+        "pilots": 20,
+        "final_campaigns": 3,
+        "violations": []
+      },
+      "delta": 2943106.095817833
+    }
+  ]
+}

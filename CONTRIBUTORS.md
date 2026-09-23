@@ -7,3 +7,7 @@ This submission was prepared by:
 - `AishaZhenisbekqz` — numeric ARPU validation and release documentation
 
 The three GitHub identities are used for the corresponding repository work.
+
+## Verification ownership
+
+Each contributor's release work is reproducible from the checked-in commands in `README.md`. The final package keeps synthetic benchmark results separate from production claims and records the submission hash used during verification.
